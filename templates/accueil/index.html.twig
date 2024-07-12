@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div>
+        <img class="imageAccueil" src="{{asset('upload/img_accueil.png')}}"  alt="accueil">
+    </div>
+    <div>
+        <p class="promesse">Le <span class="textRed">Garage V.Parrot</span> vous propose une large gamme<span class="textRed"> de services</span>
+            afin de garantir la <span class="textRed">performance</span> et la <span class="textRed">sécurité</span> de votre véhicule.<br>     
+            Nous vous proposons aussi des <span class="textRed">véhicules d’occasion</span> à la vente .<br>    
+            Le garage V.Parrot vous assure un <span class="textRed"> traitement personnalisé</span> de vos besoins et demandes.</p>
+    </div>
+    <div class="navButton">
+        <div class="button">
+            <a href="{{path('app_services_index')}}">Réparation et entretien</a>
+        </div>
+        <div class="button">
+            <a href="{{path('app_occasions_index')}}">Nos occasions</a>
+        </div>
+        <div class="button">
+            <a href="{{path('app_messages_new')}}">Contact</a>
+        </div>
+    </div>
+    <div>
+    <hr>
+        <h3>Nos clients nous recommandent :</h3>
+        <div>
+        <!--$comments=ratingComments($adminpdo);
+        foreach($comments as $comment){
+            $datePublication = strtotime($comment['date']);
+            // Date actuelle
+            $dateActuelle = time();
+            // Calcul de la différence en jours
+            $diffEnJours = floor(($dateActuelle - $datePublication) / (60 * 60 * 24));
+            // Calcul de la différence en semaines
+            $diffEnSemaines = floor($diffEnJours / 7);
+            // Affichage du message en fonction de la différence
+            if ($diffEnJours == 0) {
+                echo "Publié aujourd'hui";
+            } elseif ($diffEnJours == 1) {
+                echo "Publié hier";
+            } elseif ($diffEnJours < 7) {
+                echo "Publié il y a " . $diffEnJours . " jours";
+            } elseif ($diffEnSemaines == 1) {
+                echo "Publié il y a 1 semaine";
+            } else {
+                echo "Publié il y a " . $diffEnSemaines . " semaines";
+            }?>
+            <p class="blog-post-meta"><?=($comment['pseudo']) ?></p>
+            <p><?= htmlspecialchars($comment['comments']) ?></p>
+            <span value="" id="rating" class="rating" data-rating="<?=htmlspecialchars($comment['rating']) ?>">Note :</span>
+            <span class="etoilesContainer"></span>
+            <hr>
+            <?php }?>
+        </div>-->
+    </div>
+    <div>
+    </div>
+    <div>
+    <!--include '../templates/comments_create.php'-->
+    </div>
+{% endblock %}

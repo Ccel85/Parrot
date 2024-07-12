@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="contact container">
+    <section class="row">
+        <div class="col-8 mb-2 cardInfo">
+            <p>Vous pouvez nous contacter :<br>
+                <span class="infoContact">par mail: garageparrot@gmail.com<br>
+                Tel: 09.66.34.56.12</span>
+                <br>
+                ou à l’aide du formulaire de contact.
+            </p>
+        </div>
+    </section>
+    <section class="row">
+        <div class="col-8 formulaire">
+            <div class="form-group">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div>
+                    <button type="submit" class="btn btn-primary ">Envoyer</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

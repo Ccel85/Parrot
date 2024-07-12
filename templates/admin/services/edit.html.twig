@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="w-50 m-auto p-3">
+  <h1 class='text-center'>Mise à jour des services </h1>
+    {{form_start(form)}}
+    {% if services.pathimage %}
+    <img src="{{ asset(services.pathimage) }}" style="max-width: 400px; max-height: 400px;" alt="...">
+  {% endif %}
+    {{form_widget(form)}}
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+    <a href="{{ path('app_admin_services_show') }}" class="btn btn-warning">Retour</a>
+    {{form_end(form)}}
+  
+</div>
+{% endblock %}

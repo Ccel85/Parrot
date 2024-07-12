@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>{% block title %}Garage V.Parrot{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+            <img src="{{asset('logo/logo.svg')}}" alt="Logo Garage V.Parrot" alt="mdo" width="32" height="32" class="rounded-circle">
+        </div>
+        <nav class="menuHeader">
+            <div class="menuAccueil container ">
+                <a id="home" href="{{ path('app_accueil') }}">Accueil</a>
+                <a id="nosServices" href="{{ path('app_services_index') }}">Nos services</a>
+                <a id="nosOccasions" href="{{ path('app_occasions_index') }}">Nos Occasions</a>
+                <a id="contact" href="{{ path('app_messages_new') }}">Contact</a>
+            </div>            
+            <!--<div class="connect  dropdown text-end">
+                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="connection" src="{{ asset('logo/connection.svg') }}" alt="connection">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right text-small" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="{{ path('app_accueil') }}">Accueil</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_services_index') }}">Nos services</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_occasions_index') }}">Nos occasions</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_messages_new') }}">Contact</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ path('app_login') }}">Connexion</a></li>
+                </ul>
+            </div>-->
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if  is_granted(['ROLE_ADMIN']) %} 
+                {% do dump(app.user.roles) %}
+                <div class="connect  dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="connection" src="{{ asset('logo/connection.svg') }}" alt="connection">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href={#}"{{ path('app_admin_dashboard') }}"#}>Menu Administrateur</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ path('app_accueil') }}">Accueil</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_services_index') }}">Nos services</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_occasions_index') }}">Nos occasions</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_messages_new') }}">Contact</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </div>
+            {% elseif is_granted('ROLE_USER') %}
+                <div class="connect  dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="connection" src="{{ asset('logo/connection.svg') }}" alt="connection">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href={#"{{ path('app_employee_dashboard') }}"#}>Menu Employé</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ path('app_accueil') }}">Accueil</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_services_index') }}">Nos services</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_occasions_index') }}">Nos occasions</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_messages_new') }}">Contact</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+        {%  else %}
+                <div class="connect  dropdown text-end">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="connection" src="{{ asset('logo/connection.svg') }}" alt="connection">
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="{{ path('app_accueil') }}">Accueil</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_services_index') }}">Nos services</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_occasions_index') }}">Nos occasions</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_messages_new') }}">Contact</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ path('app_login') }}">Connexion</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                </div>
+        {% endif %}
+        <hr>
+    </header>
+    {% block body %}{% endblock %}
+    <!--footer-->
+    <footer>
+        <div class="footer mt-3">
+        {% for garage in garages %}
+            <div class="footerMail">
+                <img src="{{asset('logo/Vector_email.svg')}}" alt=''>
+                <p>{{garage.email}}</p>
+            </div>
+            <div class="footerPhone">
+                <img src="{{asset('logo/Vector-3.svg')}}" alt=''>
+                <p>{{garage.phone}}</p>
+            </div>
+            <nav class="navFooter">
+                <ul>
+                    <li class="nav-item"><a href="{{ path('app_accueil') }}" >Accueil</a></li>
+                    <li class="nav-item"><a href="{{ path('app_services_index') }}" >Nos services</a></li>
+                    <li class="nav-item"><a href="{{ path('app_occasions_index') }}" >Nos occasions</a></li>
+                    <li class="nav-item"><a href="{{ path('app_messages_new') }}" >Contact</a></li>
+                </ul>
+            </nav>
+            <div class="localisation">
+                <img src="{{asset('logo/Vector.svg')}}" alt=''>
+                <p>{{garage.adress}} <br></p>
+            </div>
+        {% endfor %}
+            <div class="horaires " >
+                <div>Horaires d’ouverture:<br></div>
+                <img src="{{asset('public/logo/footer/Vector.svg')}}" alt=''>
+                {% for horaire in horaires %}
+                    <div>{{horaire.joursOuverture}}:
+                        {{horaire.heuresDebutAM|date('H:i')}}-{{horaire.heuresFinAM|date('H:i')}}
+                        /{{horaire.heuresDebutPM|date('H:i')}}-{{horaire.heuresFinPM|date('H:i')}} <br></div>
+                {% endfor %}
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

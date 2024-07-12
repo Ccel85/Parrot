@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mise à jour des horaires{% endblock %}
+
+{% block body %}
+<form class="horaire">
+    <h2>Horaire d'ouverture</h2>
+    <table>
+      <thead>
+          <tr>
+          <th colspan="1" >Jour</th>
+            <th colspan="2" >Matin</th>
+            <th colspan="2">Après-midi</th>
+          </tr>
+      </thead>
+      <tbody>
+      {% for horaire in horaires %}
+          <tr>
+            <td name = "day" type = "text" >{{horaire.joursOuverture}}</td> 
+            <td name = "heure_debut_am" type = "text">{{horaire.heuresDebutAM|date('H:i')}}</td>                  
+            <td name = "heure_fin_am" type = "text">{{horaire.heuresFinAM|date('H:i')}}</td>
+            <td name = "heure_debut_pm" type = "text">{{horaire.heuresDebutPM|date('H:i')}}</td>
+            <td name = "heure_fin_pm" type = "text">{{horaire.heuresFinPM|date('H:i')}}</td>
+            <td >Dimanche fermé</td>
+          </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</form>
+{% endblock %}
+

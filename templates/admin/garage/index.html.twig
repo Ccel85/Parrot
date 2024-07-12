@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coordonnées et horaires{% endblock %}
+
+{% block body %}
+
+<div >
+    {% for garage in garages %}
+    <h2>Coordonnées du Garage </h2>
+        <form class="horaire">
+            <table class="mb-3">
+                <thead>
+                    <tr>
+                        <th colspan="1" >Nom</th>
+                        <th colspan="1" >Adresse</th>
+                        <th colspan="1">Email</th>
+                        <th colspan="1">Telephone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td name = "day" type = "text" >{{garage.name}}</td> 
+                        <td name = "heure_debut_am" type = "text">{{garage.adress}}</td>                  
+                        <td name = "heure_fin_am" type = "text">{{garage.email}}</td>
+                        <td name = "heure_debut_pm" type = "text">{{garage.phone}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+         <a href="{{ path('app_admin_garage_edit', {id: garage.id}) }}" class="btn btn-primary ">Modifier</a>
+        {% endfor %}
+        </form>
+       
+</div>
+<div>
+    <h2>Horaire d'ouverture</h2>
+        <form class="horaire">
+            <table class="mb-3 justify-content">
+            <thead>
+                <tr>
+                    <th colspan="1" >Jour</th>
+                    <th colspan="2" >Matin</th>
+                    <th colspan="2">Après-midi</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for horaire in horaires %}
+                <tr>
+                    <td  >{{horaire.joursOuverture}}</td> 
+                    <td >{{horaire.heuresDebutAM|date('H:i')}}</td>                  
+                    <td >{{horaire.heuresFinAM|date('H:i')}}</td>
+                    <td >{{horaire.heuresDebutPM|date('H:i')}}</td>
+                    <td>{{horaire.heuresFinPM|date('H:i')}}</td>
+            {% endfor %}
+                </tr>
+                <tr>
+                    <td >Dimanche </td>
+                    <td colspan="4" >FERME </td>
+                </tr>
+            
+            </tbody>
+            </table>
+            <a href="{{ path('app_admin_horaires') }}" class="btn btn-primary ">Modifier</a>
+        </form>
+        
+        
+</div>
+{% endblock %}
+
+

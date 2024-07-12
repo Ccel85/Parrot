@@ -1,0 +1,645 @@
+@font-face {
+  font-family: 'Raleway', sans-serif;
+  src: url(https://fonts.googleapis.com/css2?family=Raleway&display=swap);
+}  
+
+
+/*test*/
+body , body a ,h3{
+  color: #173258;
+  font-family:Raleway;
+  font-size: 1.8rem;
+ /* padding: 1rem;*/
+}
+/*header*/
+header,footer{
+  width: 100%;
+}
+.menuAccueil {
+font-size: 30px;
+font-weight: bold;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-evenly;
+align-items: center;
+align-content: center;
+}
+.menuHeader{
+display: flex;
+justify-content: space-between;
+align-items: center;
+align-content: space-around;
+flex-wrap: nowrap;
+flex-direction: row-reverse;
+text-align: center;
+}
+
+.logo{
+  display:flex;
+  justify-content: center;
+  background-color: #173258;
+  height: 501px;
+}
+.logo img {
+  height: 501px;
+  width: 501px;
+
+}
+.connect {
+  display: flex;
+  flex-direction: column;
+  align-content:center;
+  justify-content:center;
+  align-items: center;
+  flex-wrap: wrap;
+  
+}
+.menuAdmin{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: baseline;
+  list-style: none;
+}
+.admin {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.connection{
+  width: 50px;
+  height: 50px;
+  justify-self: center;
+}
+
+header a {
+  text-align: center;
+  font-size: xx-large;  
+  color: #173258;
+  text-decoration: none;
+}
+
+.buttonConnect{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+hr{
+  height: 5px;
+  background-color: #be1e2d;
+  border: none;
+}
+/*footer*/
+.footer a{
+  color: white;
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+.footerMail,.footerPhone{
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+.localisation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: localisation;
+}
+
+.footer img{
+  padding: 20px;
+  padding-top: 0rem;
+  margin: 0px;
+}
+
+.horaires{
+  grid-area: horaires;
+  text-align:end;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+.footer{
+  display: grid;   
+  grid-template-areas:
+  "footerMail footerPhone horaires"
+  "navFooter localisation horaires "
+  "navFooter localisation horaires";
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  background-color: #173258;
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  font-size: 1rem;
+}
+
+.footerMail{
+  grid-area: footerMail;
+  display: flex;
+  align-items:center;
+  justify-content: flex-start;
+}
+
+.footerPhone{
+  grid-area: footerPhone;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navfooter ul{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+/*page accueil*/
+a:hover{
+  text-decoration: underline 2px #be1e2d;
+}
+
+.imageAccueil{
+  width: 100%;
+}
+.promesse{
+  font-weight:normal;
+  line-height: 50px;
+  padding: 1rem;
+  
+}
+.infoContact{
+  color:#be1e2d;
+  font-weight: normal;
+
+  }
+.navButton{
+  display: flex;
+  flex-direction: column;
+}
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  align-self: center;
+  background-color:#be1e2d ;
+  width: 30rem;
+  height: 10rem;
+  margin: 1rem;
+  color: white;
+  font-size: 2rem;
+  }
+
+.button:hover {
+  background-color:#173258;
+  transition : 0.7s ;
+  }
+
+.button a {
+  color: white;
+}
+/* nos services */
+
+.service{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 50px;
+  align-content: center;
+  justify-content: center;
+}
+
+.nosServices p{
+  text-align: left;
+  margin: 50px;
+}
+
+h2{
+  color: #be1e2d;
+  text-decoration: underline;
+  text-align: center;
+  font-weight: bold;
+}
+.textRed{
+color:#be1e2d;
+font-weight: bold;
+}
+/* contact*/
+
+.cardInfo,form{
+  border: 4px solid #173258;
+  padding: 1rem;
+  line-height: 50px;
+}
+
+.contact{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 20px;
+  margin: 40px;
+}
+
+form button{
+  background-color: #be1e2d;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: large;
+  font-weight: bold;
+  margin: 15px;
+}
+button:hover {
+  background-color:#173258;
+  transition : 0.7s ;
+}
+button:focus {
+  outline-color :#173258 ;
+  outline-style:solid ;
+  transition : 0.7s ;
+}
+.formulaire{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.form-group{
+  text-align: center;
+}
+/*nos_occasions*/
+.filter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 3px solid #173258;
+  margin: 1rem;
+}
+.filtres h3{
+  padding-left: 1rem;
+  text-align: left;
+}
+h3{
+  font-weight: bold;
+  text-decoration: underline;
+  text-align:center;
+  padding-top: 1rem;
+  
+}
+/* card*/
+.card-img-top{
+  height: 280px;
+  width: 100%;
+}
+.card{
+  display: flex;
+  color: #173258;
+  text-align: center;
+  border: 2px solid #173258;
+  margin: 1rem;
+ height: 880px;
+}
+div.cards{
+  
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      /* grid-gap: 10px; */
+  
+}
+.card-body{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.logo-card{
+  /*display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  margin: 2rem;
+  align-items: center;*/
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+}
+.logos{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+
+}
+.logos img {
+  height: 70px;
+  width: 70px;
+  margin: 10px;
+}
+.logos p {
+  margin: 1rem;
+}
+.prix{
+  color: #be1e2d;
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem;
+  font-size: 3rem;
+}
+.button-occasions{
+  background-color: #be1e2d;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: large;
+  font-weight: bold;
+  margin: 15px;
+  text-align: center;
+  align-items: center;
+}
+.annonce{
+  width: 30rem ;
+}
+
+.imgcarousel{
+  
+  align-items: center;
+  width:100%;
+}
+/*session*/
+.modalSession ,.footerOccasion{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+table,
+td {
+
+  border: 1px solid #333 ;
+  border-collapse: collapse;
+  text-align: center;
+  margin-top: 1rem;
+  
+}
+
+thead,
+tfoot {
+  background-color: #173258;
+  color: #fff;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+option{
+  color:#173258;
+}
+
+/*carDetail*/
+.carGeneral{
+/* display: flex;*/
+  list-style-type: none;
+  text-align: left;
+}
+.announcement-container h1{
+  text-align: center;
+}
+/*.titleDescritpion{
+color:#173258;
+font-size:x-large;
+}*/
+.carCaracteristique {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-around;
+  list-style-type: none;
+  color: #173258;
+  align-items: stretch;
+  list-style: none;
+  text-align: left;
+}
+
+.carDetail,.guarantie,.autre,.carInterieur,.chassis {
+color: #173258;
+font-size:2rem ;
+list-style-type: none;
+vertical-align: top;
+}
+
+.carCaracteristique h2{
+  text-align: left;
+}
+
+/*menu employe*/
+.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.badge{
+  background-color:#be1e2d;
+}
+
+.tbord{
+  font-size: 1rem;
+}
+.tableauBord{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+}
+.message{
+  display: flex!important;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+.comments{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.select{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Menu Admin*/
+
+.formUser{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-around;
+}
+/* Ajouter une media query pour les écrans moyen */
+@media (max-width: 768px) {
+  .footer {
+      grid-template-areas:
+      "footerMail footerPhone"
+      "navFooter localisation"
+      "horaires horaires";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      align-items: start;
+      text-align: justify;
+      justify-content: center;
+  }
+  .horaires {
+      text-align: center;
+    }
+    .localisation {
+      align-self: center;
+    }
+    
+    .menuAccueil {
+  flex-wrap: wrap;
+}
+
+.menuAccueil {
+  flex: 0 0 35px;
+  overflow: hidden;
+  height: 35px;
+  padding-right: 15px;
+}
+  .menuAccueil{
+      display:none;
+  }
+  .cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-around;
+  align-items: flex-start;
+  }
+  div.cards{
+  
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+}
+.service{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+.imgService{
+  display: inline-flex;
+flex-direction: row;
+flex-wrap: wrap;
+align-content: space-around;
+justify-content: space-around;
+align-items: center;
+}
+
+}
+
+
+/* Ajouter une media query pour les écrans plus petits */
+@media (max-width: 576px) {
+  .footer {
+      grid-template-areas:
+      "footerMail"
+      "footerPhone"
+      "navFooter"
+      "localisation"
+      "horaires";
+      grid-template-columns: auto;
+      grid-template-rows: auto;
+      justify-content: center;
+  }
+  .footerPhone {
+      grid-area: "footerPhone";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 0rem;
+
+  }
+  .localisation {
+      grid-area: "localisation";
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      margin-bottom: 0px;
+  }
+  .horaires {
+      grid-area: "horaires";
+      text-align: center;
+      justify-content: center; 
+  }
+  .navFooter {
+      display:none;
+  }
+  .menuAccueil{
+      display:none;
+  }
+  .cards{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      justify-content: space-around;
+      align-items: flex-start;
+      }
+
+  .service{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      
+  }
+  .imgService{
+      display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+  align-items: center;
+  }
+}
+/*@media (max-width: 700px) {
+.menuAccueil {
+  flex-wrap: wrap;
+}
+
+.menuAccueil {
+  flex: 0 0 35px;
+  overflow: hidden;
+  height: 35px;
+  padding-right: 15px;
+}
+}*/
