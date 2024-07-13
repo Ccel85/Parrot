@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord administrateur{% endblock %}
+
+{% block body %}
+<div>
+    <p class="text-center"> Bonjour {{ app.user.getFirstName() }} {{ app.user.getName() }},<span class="textRed "></span> vous êtes connecté en tant qu'<span class="textRed">Administrateur </span>. </p>
+    <br>
+    <div class="menu">    
+        <nav>   
+            <div class=" menuAdmin">
+                <ul class="list-group">
+                    <a href="{{ path('app_admin_user_new') }}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" >Gestion des utilisateurs</li></a>
+                    <a href="{{ path('app_admin_services_show') }}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des services</li></a>
+                    <a href="{{ path('app_admin_horaires') }}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des horaires</li></a>
+                    <a href="{{ path('app_accueil') }}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des véhicules</li></a>
+                    <a href="{{ path('app_accueil') }}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Gestion Message client</li></a>
+                    <a href="{{ path('app_logout') }}">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Déconnexion</li></a><br>
+                </ul>
+            </div>
+        </nav>
+    
+        <div class="tableauBord">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href = "{{ path('app_accueil') }}">Nombre de message non lu</a>
+                    <span class="badge  rounded-pill m-2"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href ="{{ path('app_accueil') }}">Nombre d'annonce en ligne</a>
+                    <span class="badge  rounded-pill m-2"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href = "{{ path('app_accueil') }}">Nouveaux avis </a>
+                    <span href ="{{ path('app_accueil') }}"class="badge  rounded-pill m-2"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

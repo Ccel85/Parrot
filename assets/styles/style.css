@@ -39,13 +39,9 @@ text-align: center;
   display:flex;
   justify-content: center;
   background-color: #173258;
-  height: 501px;
+  height: 270px;
 }
-.logo img {
-  height: 501px;
-  width: 501px;
 
-}
 .connect {
   display: flex;
   flex-direction: column;
@@ -95,6 +91,7 @@ hr{
   height: 5px;
   background-color: #be1e2d;
   border: none;
+  width: 100%;
 }
 /*footer*/
 .footer a{
