@@ -10,6 +10,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
+/**
+ * @ORM\HasLifecycleCallbacks()
+ */
 class Annonces
 {
     #[ORM\Id]
@@ -39,12 +42,12 @@ class Annonces
 
     #[ORM\Column]
     #[Assert\NotBlank()]
-    private ?int $année = null;
+    private ?int $annee = null;
 
-    #[ORM\Column]
-    #[Assert\NotBlank()]
-    #[Assert\DateTime]
-    private ?\DateTimeImmutable $created_at = null;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
@@ -56,22 +59,22 @@ class Annonces
 
     #[ORM\Column]
     #[Assert\NotBlank()]
-    private ?int $puissance_fiscal = null;
+    private ?int $puissanceFiscal = null;
 
     #[ORM\Column]
     private ?int $puissance = null;
 
     #[ORM\Column]
     #[Assert\NotBlank()]
-    private ?int $nbre_porte = null;
+    private ?int $nbrePorte = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank()]
-    private ?string $equipement_interieur = null;
+    private ?string $equipementInterieur = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank()]
-    private ?string $equipement_exterieur = null;
+    private ?string $equipementExterieur = null;
 
     /**
      * @var Collection<int, Images>
@@ -149,28 +152,36 @@ class Annonces
         return $this;
     }
 
-    public function getAnnée(): ?int
+    public function getAnnee(): ?int
     {
-        return $this->année;
+        return $this->annee;
     }
 
-    public function setAnnée(int $année): static
+    public function setAnnee(int $annee): static
     {
-        $this->année = $année;
+        $this->annee = $annee;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
+    public function getCreatedAt(): ?\DateTimeInterface
+{
+    return $this->createdAt;
+}
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
-    {
-        $this->created_at = $created_at;
+public function setCreatedAt(\DateTimeInterface $createdAt): self
+{
+    $this->createdAt = $createdAt;
 
-        return $this;
+    return $this;
+}
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
     }
 
     public function getCouleur(): ?string
@@ -199,12 +210,12 @@ class Annonces
 
     public function getPuissanceFiscal(): ?int
     {
-        return $this->puissance_fiscal;
+        return $this->puissanceFiscal;
     }
 
-    public function setPuissanceFiscal(int $puissance_fiscal): static
+    public function setPuissanceFiscal(int $puissanceFiscal): static
     {
-        $this->puissance_fiscal = $puissance_fiscal;
+        $this->puissanceFiscal = $puissanceFiscal;
 
         return $this;
     }
@@ -223,36 +234,36 @@ class Annonces
 
     public function getNbrePorte(): ?int
     {
-        return $this->nbre_porte;
+        return $this->nbrePorte;
     }
 
-    public function setNbrePorte(int $nbre_porte): static
+    public function setNbrePorte(int $nbrePorte): static
     {
-        $this->nbre_porte = $nbre_porte;
+        $this->nbrePorte = $nbrePorte;
 
         return $this;
     }
 
     public function getEquipementInterieur(): ?string
     {
-        return $this->equipement_interieur;
+        return $this->equipementInterieur;
     }
 
-    public function setEquipementInterieur(string $equipement_interieur): static
+    public function setEquipementInterieur(string $equipementInterieur): static
     {
-        $this->equipement_interieur = $equipement_interieur;
+        $this->equipementInterieur = $equipementInterieur;
 
         return $this;
     }
 
     public function getEquipementExterieur(): ?string
     {
-        return $this->equipement_exterieur;
+        return $this->equipementExterieur;
     }
 
-    public function setEquipementExterieur(string $equipement_exterieur): static
+    public function setEquipementExterieur(string $equipementExterieur): static
     {
-        $this->equipement_exterieur = $equipement_exterieur;
+        $this->equipementExterieur = $equipementExterieur;
 
         return $this;
     }

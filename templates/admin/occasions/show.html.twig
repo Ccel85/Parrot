@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nos Occasions{% endblock %}
+
+{% block body %}
+{#$cars = getCar($adminpdo);
+
+//fonction recupere valeur min et max en BDD des filtres
+$minMaxRange = minMaxRange($adminpdo);#}
+
+<!--<nav aria-label="breadcrumb">
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="../templates/accueil.php">Accueil </a></li>
+        <li class="breadcrumb-item active" aria-current="page"></li>
+</nav>
+<div class="filtres">
+    <h3>Filtres:</h3>
+    <div class="filter">
+        <div class="price">
+            <h3>Prix</h3>
+            <input type="range" id="prix" name="prix" min="<?php echo $minMaxRange["min_prix"];?>" max="<?php echo $minMaxRange["max_prix"];?>" value="<?php echo $minMaxRange["max_prix"];?>" step="1000" >
+            <span id="prixValeur"></span>
+        </div>
+        <div class="année">
+            <h3>Année</h3>
+            <input type="range" id="annee" name="annee" min="<?php echo $minMaxRange["min_annee"];?>" max="<?php echo $minMaxRange["max_annee"];?>" value="<?php echo $minMaxRange["max_annee"];?>" step="1" >
+            <span id="anneeValeur"></span>
+        </div>
+        <div class="km">
+            <h3>Kilométrage</h3>
+            <input type="range" id="km" name="km" min="<?php echo $minMaxRange["min_km"];?>" max="<?php echo $minMaxRange["max_km"];?>"  value="<?php echo $minMaxRange["max_km"];?>"step="5000">
+            <span id="kmValeur"></span>
+        </div>
+    </div>
+</div>-->
+ <a href="{{ path('app_occasions_new') }}" class="button m-auto">Nouvelle annonce</a>
+<div class="cards">
+{%  if annonces is empty %}
+    <p class='text-center'> Il n'y a pas d'annonce actuellement.</p>
+  {% else %}
+    {% for annonce in annonces %} 
+      <!--affichage annonce car-->
+    <div class="container carCard">
+      <div class="card" id="card" >
+        <div class="card-body"> 
+          <img class="card-img-top" src="{{'car.pathImage'}}" alt="vehicule">
+          <h2 class="card-title">{{annonce.constructeur}} {{annonce.modele}}</h2>
+          <div class="logo-card">
+            <div class="logos">
+                <img src="{{asset('logo/logo_carburant.svg')}}" alt='logo_carburant'>
+                <p class="energy">{{annonce.carburant}}</p>
+            </div>
+            <div class="logos">
+                <img src="{{asset('logo/logo_compteur_vitesse.svg')}}" alt='logo_vitesse'>
+                <p class="km">{{annonce.km}}</p>
+            </div>
+            <div class="logos">
+                <img src="{{asset('logo/logo_calendrier.svg')}}" alt='logo_calendrier'>
+                <p class="year">{{annonce.annee}}</p>
+            </div>
+          </div>
+          <div>
+            <h2 class="prix">{{annonce.prix}} €</h2>  
+          </div>
+        <!---->
+            
+              <a  href="{{ path('app_occasions_edit',{'id': annonce.id}) }}" class="button-occasions" >Modifier</a>
+              <a  href="{{ path('app_occasions_delete',{'id': annonce.id}) }}"   class="button-occasions">Supprimer</a>
+          <div>Référence de l'annonce : 00{{annonce.id}}</div>
+        </div>
+      </div>
+    </div>
+    {%  endfor %}
+{% endif %}
+  </div>  
+</div>
+    
+{% endblock %}
+
+    

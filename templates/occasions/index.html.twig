@@ -58,46 +58,40 @@ $minMaxRange = minMaxRange($adminpdo);#}
         </div>
     </div>
 </div>-->
-
-<div class="cards">  
-{%  if occasions is empty %}
-
-<p> Il n'y a pas d'annonce actuellement.</p>
-{% else %}
-    {% for occasion in occasions %} 
-
-        <!--affichage annonce car-->
-    <div class="container carCard">
-    <div class="card" id="card" >
-        <div class="card-body"> 
-        <img class="card-img-top" src="{{'car.pathImage'}}" alt="vehicule">
-        <h2 class="card-title">{{annonce.title}}</h2>
-        <div class="logo-card">
-        <div class="logos">
-            <img src="{{asset('logo/logo_carburant.svg')}}" alt='logo_carburant'>
-            <p class="energy">{{annonce.energy}}</p>
+<div class="cards"> 
+{%  if annonces is empty %}
+    <p class='text-center'> Il n'y a pas d'annonce actuellement.</p>
+    {% else %}
+        {% for annonce in annonces %} 
+            <!--affichage annonce car-->
+        <div class="container carCard">
+            <div class="card" id="card" >
+                <div class="card-body"> 
+                    <img class="card-img-top" src="{{'car.pathImage'}}" alt="vehicule">
+                    <h2 class="card-title">{{annonce.constructeur}} {{annonce.modele}}</h2>
+                    <div class="logo-card">
+                        <div class="logos">
+                            <img src="{{asset('logo/logo_carburant.svg')}}" alt='logo_carburant'>
+                            <p class="energy">{{annonce.carburant}}</p>
+                        </div>
+                        <div class="logos">
+                            <img src="{{asset('logo/logo_compteur_vitesse.svg')}}" alt='logo_vitesse'>
+                            <p class="km">{{annonce.km}}</p>
+                        </div>
+                        <div class="logos">
+                            <img src="{{asset('logo/logo_calendrier.svg')}}" alt='logo_calendrier'>
+                            <p class="year">{{annonce.annee}}</p>
+                        </div>
+                    </div>
+                    <h2 class="prix">{{annonce.prix}} €</h2> 
+                    <div class="d-flex flex-column align-self-end">
+                        <a  href="{#{{ path('app_occasions_edit',{'id': annonce.id}) }}#}" class="button-occasions" value="{{annonce.id}}">Plus de detail</a>
+                        <div>Référence de l'annonce : 00{{annonce.id}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="logos">
-            <img src="{{asset('logo/logo_compteur_vitesse.svg')}}" alt='logo_vitesse'>
-            <p class="km">{{annonce.km}}</p>
-        </div>
-        <div class="logos">
-            <img src="{{asset('logo/logo_calendrier.svg')}}" alt='logo_calendrier'>
-            <p class="year">{{annonce.année}}</p>
-        </div>
-        </div>
-        <div>
-        <h2 class="prix">{{annonce.price}}</h2>  
-        </div>
-        <!---->
-            
-        <button  class="button-occasions" value="{{annonce.id}}">Plus de détails</button>
-        
-        <div>Référence de l'annonce : 00 : {{annonce.id}}</div>
-        </div>
-    </div>
-    </div>
-    {%  endfor %}
+        {%  endfor %}
 {% endif %}
 </div>  
 {% endblock %}

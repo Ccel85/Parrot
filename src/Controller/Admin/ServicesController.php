@@ -64,6 +64,7 @@ class ServicesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($services);
             $manager->flush();
+            
 
             return $this->redirectToRoute('app_admin_services_show');
         }

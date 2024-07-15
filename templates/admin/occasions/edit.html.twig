@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nos Occasions{% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+  <button type="submit" class="button">Envoyer</button>
+  <button type="submit" class="button">Supprimer</button>
+  <a href="{{ path('app_occasions_show') }}" class="button">Retour</a>
+{{ form_end(form) }}
+
+{% endblock %}
