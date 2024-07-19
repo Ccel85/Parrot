@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des messages{% endblock %}
+
+{% block body %}
+<h2>Messages reçus: </h2>
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ messages|join('<br>')|raw }}
+        </div>
+    {% endfor %}
+<form method="POST">
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Sujet</th>
+            </tr>
+        </thead>
+        {% for messagesnonarchive in messagesnonarchives %}
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <input type="checkbox" class="checkboxMessage m-3" class="checkboxMessage"name="archive {{messagesnonarchive.email}}" value='Y'>
+                    <input type="hidden" name="archive[]" id="archiveInput" class="archiveInput" value=''>
+                </th>
+                <td>Le date par M. {{messagesnonarchive.name}}</td>
+                <td>{{messagesnonarchive.email}}</td>
+                <td><a data-bs-toggle="collapse"  href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" >{{messagesnonarchive.subject}}</a>
+                </td>
+                </th>
+            </tr>
+        
+        </tbody>
+    </table>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        {{messagesnonarchive.message}}
+                    </div>
+                </div>
+    {% endfor %}
+        {#<!--<div class="d-flex">
+            <input type="checkbox" class="checkboxMessage m-3" class="checkboxMessage"name="archive {{message.email}}" value='Y'>
+            <input type="hidden" name="archive[]" id="archiveInput" class="archiveInput" value=''>
+            <p class="blog-post-meta fst-italic m-3"> Le par M. {{message.name}} </p>
+            <p class="blog-post-meta m-3 text-nowrap">Email:{{message.email}}</p>
+            <p class="blog-post-meta m-3 text-nowrap">Sujet du message:{{message.subject}} </p>
+            <div>
+                <p class="blog-post-meta m-3 text-nowrap">Message:{{message.message}}</p>
+            </div>    
+        </div>-->#}
+        
+    <hr>
+    <div class="navButton">
+        <button type = "submit" class="button " name="validerArchive" >Archiver</button>
+    </div>
+</form>
+<h2>Messages archivés: </h2>
+<div class="messages archives">
+    <!--recuperer les messages archivés -->
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Sujet</th>
+            </tr>
+        </thead>
+        {% for messagesarchive in messagesarchives %}
+        <!--$dateFormate = date("d-m-y", strtotime($archiveMessage['date']));-->
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <input type="checkbox" class="checkboxMessage m-3" name="archive[]" value="{{ messagesarchive.id }}">
+                </th>
+                <td>Le date par M. {{messagesarchive.name}}</td>
+                <td>{{messagesarchive.email}}</td>
+                <td>
+                    <a data-bs-toggle="collapse"  href="#collapseArchive" role="button" aria-expanded="false" aria-controls="collapseExample" >{{messagesarchive.subject}}</a>
+                </td>
+                </th>
+            </tr>
+
+        </tbody>
+    </table>
+    <div class="collapse" id="collapseArchive">
+        <div class="card card-body">
+            {{messagesarchive.message}}
+        </div>
+    </div>
+    {% endfor %}
+    <hr>
+</div>
+ <div class="navButton">
+        <button type = "submit" class="button " name="desarchiver" >Désarchiver</button>
+</div>
+
+{% endblock %}

@@ -29,6 +29,30 @@ class OccasionsController extends AbstractController
         ]);
     }
 
+    #[Route('/occasions/{id}/details', name: 'app_occasions_details', requirements: ['id' => '\d+'], methods: ['GET'])]
+    public function details($id,AnnoncesRepository $annoncesRepository,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
+    {
+        $annonces =  $annoncesRepository->findOneBy(['id' => $id]);
+        if (!$annonces) {
+            throw $this->createNotFoundException('L\'annonce n\'existe pas.');
+        }
+        $equipementExterieur = explode(',', $annonces->getEquipementExterieur());
+        $equipementInterieur = explode(',', $annonces->getEquipementInterieur());
+        $autresEquipements = $annonces->getAutresEquipements() ? explode(',', $annonces->getAutresEquipements()) : [];
+        $garages = $garagerepository->findAll();
+        $horaires = $horairesRepository->findAll();
+       
+        return $this->render('/occasions/details.html.twig', [
+            'annonces' => $annonces,
+            'garages' => $garages,
+            'horaires'=>$horaires,
+            'equipementExterieur' => $equipementExterieur,
+            'equipementInterieur' => $equipementInterieur,
+            'autresEquipements' => $autresEquipements,
+            
+        ]);
+    }
+
     #[Route('admin/occasions/new', name: 'app_occasions_new',methods: ['GET', 'POST'])]
     public function new(Request $request,EntityManagerInterface $manager,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
     {

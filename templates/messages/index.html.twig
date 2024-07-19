@@ -1,51 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block body %}
-<!--
-// Récupérer la valeur du sujet à partir de la variable POST
-$subject = isset($_POST['subject']) ? $_POST['subject'] : '';
-// Utiliser cette valeur dans l'attribut value de l'élément input
--->
 <div class="container">
-<div class="contact row" >
-    <div class="col-md-4 mb-3 cardInfo">
-        <p>Vous pouvez nous contacter :<br>
+    <div class="contact row">
+        <div class="col-md-5 cardInfo">
+            <p>Vous pouvez nous contacter :<br>
             <span class="infoContact">par mail: garageparrot@gmail.com<br>
             Tel:  09.66.34.56.12</span><br>
-            ou à l’aide du formulaire de contact. </p>
+            ou à l’aide du formulaire de contact.</p>
+        </div>
     </div>
-<form  method="POST">
-<div class="row formulaire">
-    <div class="form-group col-md-6 mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Votre nom </label>
-        <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="DOE">
+    {{ form_start(form) }}
+    <div class="row formulaire">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'DOE'}}) }}
+                {{ form_errors(form.name) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'name@example.com'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.phone) }}
+                {{ form_widget(form.phone, {'attr': {'class': 'form-control', 'placeholder': '01.23.45.67.89'}}) }}
+                {{ form_errors(form.phone) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.subject) }}
+                {{ form_widget(form.subject, {'attr': {'class': 'form-control', 'placeholder': 'Votre sujet'}}) }}
+                {{ form_errors(form.subject) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.message) }}
+                {{ form_widget(form.message, {'attr': {'class': 'form-control', 'rows': '3'}}) }}
+                {{ form_errors(form.message) }}
+            </div>
+            <div>
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Votre Email</label>
-        <input type="email" class="form-control" name="email" id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Votre téléphone</label>
-        <input type="phone" class="form-control" name="phone" id="exampleFormControlInput1" placeholder="01.23.45.67.89">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Votre sujet</label>
-        <input type="text" class="form-control subject" value="" name="subject" id="exampleFormControlInput1" placeholder="Votre sujet">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Votre message</label>
-        <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div>
-    <button type="submit" name="validerMessage">Envoyer</button>
-    </div>
+    {{ form_end(form) }}
 </div>
-</form>
-</div>
-</div>
-<!--
-if(isset($_POST['validerMessage'])) { 
-    insertMessage($adminpdo);}  -->
 {% endblock %}
+

@@ -18,7 +18,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des horaires</li></a>
                     <a href="{{ path('app_occasions_show') }}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des véhicules</li></a>
-                    <a href="{{ path('app_accueil') }}">
+                    <a href="{{ path('app_admin_messages') }}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion Message client</li></a>
                     <a href="{{ path('app_logout') }}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Déconnexion</li></a><br>
@@ -30,11 +30,11 @@
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href = "{{ path('app_accueil') }}">Nombre de message non lu</a>
-                    <span class="badge  rounded-pill m-2"></span>
+                    <span class="badge  rounded-pill m-2">{{ totalmessages }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href ="{{ path('app_occasions_show') }}">Nombre d'annonce en ligne</a>
-                    <span class="badge  rounded-pill m-2"></span>
+                    <span class="badge  rounded-pill m-2">{{ totalcars }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href = "{{ path('app_accueil') }}">Nouveaux avis </a>

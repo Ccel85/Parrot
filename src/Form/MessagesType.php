@@ -20,11 +20,6 @@ class MessagesType extends AbstractType
             ->add('name',TextType::class,[
                 'label' => 'Nom' ])
 
-            ->add('created_at', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'Créé le :',
-                ])
-
             ->add('email',EmailType::class,[
                 'label' => 'Votre email'
                 ])

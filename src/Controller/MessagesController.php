@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/messages')]
-
+//message page contact
 class MessagesController extends AbstractController
 {
     #[Route('/new', name: 'app_messages_new' , methods: ['GET' , 'POST'])]

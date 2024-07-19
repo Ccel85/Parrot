@@ -10,9 +10,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
-/**
- * @ORM\HasLifecycleCallbacks()
- */
+#[ORM\HasLifecycleCallbacks()]
+
 class Annonces
 {
     #[ORM\Id]
@@ -44,9 +43,7 @@ class Annonces
     #[Assert\NotBlank()]
     private ?int $annee = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: "datetime")]
     private $createdAt;
 
     #[ORM\Column(length: 255)]
@@ -81,6 +78,9 @@ class Annonces
      */
     #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'path_images')]
     private Collection $images;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $autresEquipements = null;
 
     public function __construct()
     {
@@ -176,13 +176,13 @@ public function setCreatedAt(\DateTimeInterface $createdAt): self
     return $this;
 }
 
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
+#[ORM\PrePersist]
+public function setCreatedAtValue()
+{
+    if ($this->createdAt === null) {
         $this->createdAt = new \DateTime();
     }
+}
 
     public function getCouleur(): ?string
     {
@@ -294,6 +294,18 @@ public function setCreatedAt(\DateTimeInterface $createdAt): self
                 $image->setPathImages(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAutresEquipements(): ?string
+    {
+        return $this->autresEquipements;
+    }
+
+    public function setAutresEquipements(?string $autresEquipements): static
+    {
+        $this->autresEquipements = $autresEquipements;
 
         return $this;
     }

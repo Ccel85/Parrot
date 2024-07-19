@@ -85,7 +85,7 @@ $minMaxRange = minMaxRange($adminpdo);#}
                     </div>
                     <h2 class="prix">{{annonce.prix}} €</h2> 
                     <div class="d-flex flex-column align-self-end">
-                        <a  href="{#{{ path('app_occasions_edit',{'id': annonce.id}) }}#}" class="button-occasions" value="{{annonce.id}}">Plus de detail</a>
+                        <a  href="{{ path('app_occasions_details',{'id': annonce.id}) }}" class="button-occasions" value="{{annonce.id}}">Plus de detail</a>
                         <div>Référence de l'annonce : 00{{annonce.id}}</div>
                     </div>
                 </div>

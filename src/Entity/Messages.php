@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use App\Repository\MessagesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MessagesRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
+#[ORM\HasLifecycleCallbacks()]
+
 class Messages
 {
     #[ORM\Id]
@@ -23,12 +25,11 @@ class Messages
     #[Assert\NotBlank()]
     private ?string $message = null;
 
-    #[ORM\Column]
-    private ?bool $isArchived = null;
+    #[ORM\Column(type: "boolean")]
+    private $isArchived;
 
-    #[ORM\Column]
-    #[Assert\NotBlank()]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: "datetime")]
+    private  $createdAt ;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
@@ -67,19 +68,28 @@ class Messages
         return $this;
     }
 
-    public function isArchived(): ?bool
+    public function getIsArchived(): ?bool
     {
         return $this->isArchived;
     }
 
-    public function setArchived(bool $isArchived): static
+    public function setIsArchived(bool $isArchived): self
     {
         $this->isArchived = $isArchived;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    #[ORM\PrePersist]
+    public function setIsArchivedValue()
+    {
+        if ($this->isArchived === null) {
+            $this->isArchived = false;
+        }
+    }
+
+
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -89,6 +99,14 @@ class Messages
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTime();
+        }
     }
 
     public function getEmail(): ?string

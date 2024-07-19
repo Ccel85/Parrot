@@ -1,0 +1,107 @@
+{# templates/occasions/details.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'annonces{% endblock %}
+
+{% block body %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+    <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}">Accueil</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_occasions_index') }}">Nos occasions</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ annonces.constructeur }} {{ annonces.modele }}</li>
+  </ol>
+</nav>
+<div class="m-auto p-3">
+  <div class="container announcement-container">
+    <div id="myCarousel" class="carousel slide mb-6 pointer-event" data-bs-ride="carousel">
+      <div class="carousel-inner text-center">
+          {% for image in annonces.images %}
+              <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                  <img class="card-img imgcarousel" src="{{ asset(image) }}" alt="Image {{ loop.index }}">
+              </div>
+          {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <h1 class="carTitle">{{ annonces.constructeur }} {{ annonces.modele }}</h1>
+    <div class="logo-card">
+        <div class="logos">
+            <img src="{{ asset('logo/logo_carburant.svg') }}" alt="Carburant">
+            <p>{{ annonces.carburant }}</p>
+        </div>
+        <div class="logos">
+            <img src="{{ asset('logo/logo_compteur_vitesse.svg') }}" alt="Kilométrage">
+            <p>{{ annonces.km }}</p>
+        </div>
+        <div class="logos">
+            <img src="{{ asset('logo/logo_calendrier.svg') }}" alt="Année">
+            <p>{{ annonces.annee }}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="carCaracteristique">
+      <h2>Caractéristiques générales :</h2><br>
+      <ul class="list-group">
+        <li class="list-group">Couleur :{{ annonces.couleur }}</li>
+        <li class="list-group">Boite :{{ annonces.boite }}</li>
+        <li class="list-group">Nombre de portes :{{ annonces.nbrePorte }}</li>
+        <li class="list-group">Puissance fiscale :{{ annonces.puissanceFiscal }} CV</li>
+        <li class="list-group">Puissance DIN :{{ annonces.puissance }}</li>
+      </ul>
+    </div>
+    <hr>
+    <div class="carInfos">
+        <div class="carInterieur">
+            <h2>Equipement intérieur :</h2><br>
+            <ul class="list-group">
+            {% for interieur in equipementInterieur %}
+                <li class="list-group">{{ interieur }}<br></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <br>
+        <div class="chassis">
+            <h2>Equipement exterieur :</h2><br>
+            <ul class="list-group">
+            {% for exterieur in equipementExterieur %}
+                <li class="list-group">{{ exterieur }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <br>
+        {% if autresEquipements is not empty %}
+        <div class="autre">
+            <h2>Autre :</h2><br>
+            <ul class="list-group">
+                {% for autre in autresEquipements %}
+                    <li class="list-group">{{ autre }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    </div>
+    <hr>
+    <div class="prix">
+        <h2>Prix : {{ annonces.prix }} €</h2>
+    </div>
+    <hr>
+    <div class="footerOccasion">
+        <div>Référence de l'annonce : 00{{ annonces.id }}</div>
+        <div>
+            <button class="demandeInfo button" id="demandeInfo" name="demandeInfo">Demande d'info</button>
+        </div>
+        <div>
+            <a class="button" href="{{ path('app_occasions_index') }}">Retour</a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

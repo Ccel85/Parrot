@@ -19,18 +19,36 @@ class MessagesRepository extends ServiceEntityRepository
     //    /**
     //     * @return Messages[] Returns an array of Messages objects
     //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('m.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    //compter les messages non archivés
+    public function countMessageNotArchived(): int
+        {
+            $qb = $this->createQueryBuilder('m')
+            ->select('count(m.id)')
+            ->where('m.isArchived = :isArchived')
+            ->setParameter('isArchived', false); // Assuming isArchived is a boolean
 
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+//récuperer les messages archivés
+    public function MessageArchived(): array
+{
+    $qb = $this->createQueryBuilder('m')
+        ->select('m')
+        ->where('m.isArchived = :isArchived')
+        ->setParameter('isArchived', true);
+
+    return $qb->getQuery()->getResult();
+}
+//récuperer les messages non archivés
+public function MessageNotArchived(): array
+{
+    $qb = $this->createQueryBuilder('m')
+        ->select('m')
+        ->where('m.isArchived = :isArchived')
+        ->setParameter('isArchived',false);
+
+    return $qb->getQuery()->getResult();
+}
     //    public function findOneBySomeField($value): ?Messages
     //    {
     //        return $this->createQueryBuilder('m')

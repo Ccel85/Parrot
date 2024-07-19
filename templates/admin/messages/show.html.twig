@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block body %}
+<h2>Messages reçus: </h2>
+<form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Sujet</th>
+                <th scope="col">Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <input type="checkbox" class="checkboxMessage m-3" class="checkboxMessage"name="archive {{message.email}}" value='Y'>
+                    <input type="hidden" name="archive[]" id="archiveInput" class="archiveInput" value=''>
+                </th>
+                <td>Le date par M. {{message.name}}</td>
+                <td>{{message.email}}</td>
+                <td>{{message.subject}}</td>
+                <td>
+                    <a href="#">{{message.message}}</a>
+                </td>
+                </th>
+            </tr>
+            <tr>
+                <td scope="col5" >{{message.message}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <div class="navButton">
+        <button type = "submit" class="button " name="validerArchive" >Valider les modifications</button>
+    </div>
+</form>
+{% endblock %}

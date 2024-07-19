@@ -62,6 +62,9 @@ class AnnoncesType extends AbstractType
             ->add('equipementExterieur',TextareaType::class,[
                 'label' => 'Equipement Exterieur',
                 ])
+            ->add('autresEquipements',TextareaType::class,[
+                    'label' => 'Equipement Autre',
+                    ])
         ;
     }
 
