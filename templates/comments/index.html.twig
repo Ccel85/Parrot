@@ -3,22 +3,18 @@
 {% block title %}Votre avis{% endblock %}
 
 {% block body %}
-<form action="" method="POST">
-<h3>Laissez nous un avis:</h3>
-<div class="mb-3">
-      <label for="pseudo" class="form-label">Votre nom ou pseudo</label>
-      <textarea class="form-control" name="pseudo" id="pseudo"></textarea>
-  </div>
-  <div class="mb-3">
-      <label for="comment" class="form-label">Postez un commentaire</label>
-      <textarea class="form-control" name="comments" placeholder="Soyez respectueux/se, nous sommes humain(e)s." id="comment"></textarea>
-  </div>
-  <div class="mb-3">
-      <label for="rating" class="form-label">Laissez nous une note (de 1 à 5) </label>
-      <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" step="1" />
-  </div>
-  <div class="button">
-  <a type="submit" class="button">Envoyer</a>
-  </div>
-</form>
+{%  if allComments is empty %}
+    <p class='text-center'> Il n'y a pas d'avis.</p>
+    {% else %}
+    <div class="list-group">
+    {% for comment in allComments %}
+        <article class="blog-post">
+            <h2 class="blog-post-title">Les avis</h2>
+            <p class="blog-post-meta">Posté le {{comment.isCreatedAt|date("d-m-Y ")}} par {{comment.name}} </p>
+            <p>{{comment.comments}}</p>
+            <p>Note: {{comment.rating}}</p>
+            <hr>
+    {% endfor %}
+        </article>
+{% endif %}
 {% endblock %}

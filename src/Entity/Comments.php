@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentsRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentsRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\HasLifecycleCallbacks()]
 #[ORM\Entity(repositoryClass: CommentsRepository::class)]
 class Comments
 {
@@ -13,16 +16,18 @@ class Comments
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $isCreatedAt = null;
+    #[ORM\Column(type: "datetime_immutable")]
+    private ?\DateTimeImmutable $isCreatedAt=null ;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Comments = null;
+    #[Assert\NotBlank()]
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $comments = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $Rating = null;
+    private ?int $rating = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
     private ?string $name = null;
 
     public function getId(): ?int
@@ -30,38 +35,51 @@ class Comments
         return $this->id;
     }
 
+    public function __construct()
+    {
+        $this->isCreatedAt = new \DateTimeImmutable();
+    }
+    
     public function getIsCreatedAt(): ?\DateTimeImmutable
     {
         return $this->isCreatedAt;
     }
 
-    public function setIsCreatedAt(\DateTimeImmutable $isCreatedAt): static
+    public function setIsCreatedAt(\DateTimeImmutable $isCreatedAt): self
     {
         $this->isCreatedAt = $isCreatedAt;
 
         return $this;
     }
+    #[ORM\PrePersist]
+public function setIsCreatedAtValue()
+{
+    if ($this->isCreatedAt === null) {
+        $this->isCreatedAt = new \DateTimeImmutable();
+    }
+}
+
 
     public function getComments(): ?string
     {
-        return $this->Comments;
+        return $this->comments;
     }
 
-    public function setComments(string $Comments): static
+    public function setComments(string $comments): static
     {
-        $this->Comments = $Comments;
+        $this->comments = $comments;
 
         return $this;
     }
 
     public function getRating(): ?int
     {
-        return $this->Rating;
+        return $this->rating;
     }
 
-    public function setRating(?int $Rating): static
+    public function setRating(?int $rating): static
     {
-        $this->Rating = $Rating;
+        $this->rating = $rating;
 
         return $this;
     }
