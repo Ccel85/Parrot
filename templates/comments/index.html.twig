@@ -7,14 +7,31 @@
     <p class='text-center'> Il n'y a pas d'avis.</p>
     {% else %}
     <div class="list-group">
-    {% for comment in allComments %}
-        <article class="blog-post">
-            <h2 class="blog-post-title">Les avis</h2>
-            <p class="blog-post-meta">Posté le {{comment.isCreatedAt|date("d-m-Y ")}} par {{comment.name}} </p>
-            <p>{{comment.comments}}</p>
-            <p>Note: {{comment.rating}}</p>
+    <h2 class="blog-post-title">LES AVIS :</h2>
+    {% for formattedComment in formattedComments %}
+            <article class="blog-post">
+                <p class="blog-post-meta ">{{formattedComment.publicationMessage}} par<span class ="text-capitalize"> {{formattedComment.comment.name}}</span> </p>
+                <p class="text-center text-break">{{formattedComment.comment.comments}}</p>
+                <p id="rating">
+            Note: <span class="rating" data-rating="{{ formattedComment.comment.rating }}"></span>
+            <span class="etoiles"></span></p>
+            <a class="button" href="{{ path('app_comments_delete', {'id': formattedComment.comment.id}) }}">Supprimer</a>
             <hr>
     {% endfor %}
         </article>
 {% endif %}
+<!-- Toast Notification -->
+<div class="toast-container position-fixed top-50 start-50 p-3">
+    {% for message in app.session.flashbag.get('success') %}
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body ">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

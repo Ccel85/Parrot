@@ -88,7 +88,7 @@ header a {
 }
 
 hr{
-  height: 5px;
+  height: 3px;
   background-color: #be1e2d;
   border: none;
   width: 100%;
@@ -205,6 +205,10 @@ a:hover{
 
 .button a {
   color: white;
+}
+
+.etoiles{
+  color:#be1e2d;
 }
 /* nos services */
 

@@ -20,7 +20,8 @@ class CommentsType extends AbstractType
             ->add('comments',TextareaType::class,[
                 'label' => 'Postez votre avis' ])
             ->add('rating',IntegerType::class,[
-                'label' => 'Laissez nous une note (de 1 à 5)'
+                'label' => 'Laissez nous une note (de 1 à 5)',
+                'attr' => ['min' => 1, 'max' => 5],
             ])
         ;
     }

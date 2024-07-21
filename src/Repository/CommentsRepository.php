@@ -19,17 +19,21 @@ class CommentsRepository extends ServiceEntityRepository
 //    /**
 //     * @return Comments[] Returns an array of Comments objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+public function lastBestComments(): array
+{
+    $value = 4;
+    $qb = $this -> createQueryBuilder('c')
+            ->andWhere('c.rating >= :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.isCreatedAt', 'DESC')
+            ->setMaxResults(10);
+        
+        return $qb->getQuery()
+                ->getResult()
+        ;
+    }
+
+
 
 //    public function findOneBySomeField($value): ?Comments
 //    {

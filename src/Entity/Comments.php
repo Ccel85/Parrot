@@ -16,7 +16,7 @@ class Comments
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: "datetime_immutable")]
+    #[ORM\Column(type: "date_immutable")]
     private ?\DateTimeImmutable $isCreatedAt=null ;
 
     #[Assert\NotBlank()]
