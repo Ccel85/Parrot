@@ -13,13 +13,13 @@
             Le garage V.Parrot vous assure un <span class="textRed"> traitement personnalisé</span> de vos besoins et demandes.</p>
     </div>
     <div class="navButton">
-        <div class="button">
+        <div class="buttonAccueil">
             <a href="{{path('app_services_index')}}">Réparation et entretien</a>
         </div>
-        <div class="button">
+        <div class="buttonAccueil">
             <a href="{{path('app_occasions_index')}}">Nos occasions</a>
         </div>
-        <div class="button">
+        <div class="buttonAccueil">
             <a href="{{path('app_messages_new')}}">Contact</a>
         </div>
     </div>
@@ -43,7 +43,9 @@
             {% endif %}
             
     </div>
-<a href="{{path('app_comments_new')}}" class="text-center"> Laisser nous votre avis </a>
+    <div class="d-flex justify-content-center">
+        <a href="{{path('app_comments_new')}}" class="" > Laisser nous votre avis </a>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

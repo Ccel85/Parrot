@@ -51,12 +51,10 @@
                 <p class="blog-post-meta m-3 text-nowrap">Message:{{message.message}}</p>
             </div>    
         </div>-->#}
-        
-    <hr>
-    <div class="navButton">
-        <button type = "submit" class="button " name="validerArchive" >Archiver</button>
+    <div class="">
+        <button type = "submit" class="btn btn-warning " name="validerArchive" >Archiver</button>
     </div>
-</form>
+    <hr>
 <h2>Messages archivés: </h2>
 <div class="messages archives">
     <!--recuperer les messages archivés -->
@@ -92,10 +90,10 @@
         </div>
     </div>
     {% endfor %}
+    <div class="">
+        <button type = "submit" class="btn btn-warning " name="desarchiver" >Désarchiver</button>
+    </div>
     <hr>
 </div>
- <div class="navButton">
-        <button type = "submit" class="button " name="desarchiver" >Désarchiver</button>
-</div>
-
+</form>
 {% endblock %}

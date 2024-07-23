@@ -15,7 +15,7 @@
                 <p id="rating">
             Note: <span class="rating" data-rating="{{ formattedComment.comment.rating }}"></span>
             <span class="etoiles"></span></p>
-            <a class="button" href="{{ path('app_comments_delete', {'id': formattedComment.comment.id}) }}">Supprimer</a>
+            <a class="btn btn-warning" href="{{ path('app_comments_delete', {'id': formattedComment.comment.id}) }}">Supprimer</a>
             <hr>
     {% endfor %}
         </article>

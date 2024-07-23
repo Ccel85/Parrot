@@ -184,7 +184,7 @@ a:hover{
   display: flex;
   flex-direction: column;
 }
-.button{
+.buttonAccueil {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -196,14 +196,15 @@ a:hover{
   margin: 1rem;
   color: white;
   font-size: 2rem;
+  border-radius: 1rem
   }
 
-.button:hover {
+.button:hover,.buttonAccueil:hover {
   background-color:#173258;
   transition : 0.7s ;
   }
 
-.button a {
+.button a ,.buttonAccueil a {
   color: white;
 }
 
@@ -270,6 +271,7 @@ form button{
   font-size: large;
   font-weight: bold;
   margin: 15px;
+  border-radius: 1rem
 }
 button:hover {
   background-color:#173258;
@@ -376,6 +378,7 @@ div.cards{
   margin: 15px;
   text-align: center;
   align-items: center;
+  border-radius: 1rem
 }
 .annonce{
   width: 30rem ;
