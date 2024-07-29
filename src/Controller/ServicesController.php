@@ -15,7 +15,7 @@ class ServicesController extends AbstractController
     #[Route('', name: 'app_services_index')]
     public function index(ServicesRepository $servicesrepository,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
     {
-        $services = $servicesrepository->findAll();
+        $services = $servicesrepository->findBy(['isPublished' => 'false']);
         $garages = $garagerepository->findAll();
         $horaires = $horairesRepository->findAll();
         return $this->render('services/index.html.twig', [

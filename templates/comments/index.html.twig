@@ -3,23 +3,62 @@
 {% block title %}Votre avis{% endblock %}
 
 {% block body %}
-{%  if allComments is empty %}
+{%  if commentsNotArchived is empty %}
     <p class='text-center'> Il n'y a pas d'avis.</p>
     {% else %}
     <div class="list-group">
-    <h2 class="blog-post-title">LES AVIS :</h2>
-    {% for formattedComment in formattedComments %}
-            <article class="blog-post">
-                <p class="blog-post-meta ">{{formattedComment.publicationMessage}} par<span class ="text-capitalize"> {{formattedComment.comment.name}}</span> </p>
-                <p class="text-center text-break">{{formattedComment.comment.comments}}</p>
-                <p id="rating">
-            Note: <span class="rating" data-rating="{{ formattedComment.comment.rating }}"></span>
-            <span class="etoiles"></span></p>
-            <a class="btn btn-warning" href="{{ path('app_comments_delete', {'id': formattedComment.comment.id}) }}">Supprimer</a>
-            <hr>
-    {% endfor %}
-        </article>
+        <h2 class="blog-post-title">LES AVIS :</h2>
+        <form method="post" action="{{ path('app_comments_manage') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token('manage') }}">
+            {% for formattedComment in formattedComments %}
+                <article class="blog-post">
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" name="checkbox[]" type="checkbox" value="{{ formattedComment.comment.id }}" id="flexCheckDefault{{ formattedComment.comment.id }}">
+                            <label class="form-check-label" for="flexCheckDefault{{ formattedComment.comment.id }}"></label>
+                        </div>
+                        <p class="blog-post-meta">{{ formattedComment.publicationMessage }} par<span class="text-capitalize"> {{ formattedComment.comment.name }}</span></p>
+                    </div>
+                    <p class="text-center text-break">{{ formattedComment.comment.comments }}</p>
+                    <p id="rating">Note: <span class="rating" data-rating="{{ formattedComment.comment.rating }}"></span><span class="etoiles"></span></p>
+                    <hr>
+                </article>
+            {% endfor %}
+            <button type="submit" name="archive" class="btn btn-warning">Archiver sélectionnés</button>
+            <button type="submit" name="delete" class="btn btn-danger">Supprimer sélectionnés</button>
+        </form>
+    </div>
 {% endif %}
+<hr>
+<!--avis archive-->
+<div class='avisArchive'>
+    {%  if commentsArchived is empty %}
+        <p class='text-center'> Il n'y a aucun avis archivé.</p>
+        {% else %}
+    <div class="list-group">
+        <h2 class="blog-post-title">Les avis archivés :</h2>
+        <form method="post" action="{{ path('app_comments_manage') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token('manage') }}">
+            {% for formattedCommentArchived in formattedCommentsArchived %}
+                <article class="blog-post">
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input" name="checkbox[]" type="checkbox" value="{{ formattedCommentArchived.comment.id }}" id="flexCheckDefault{{ formattedCommentArchived.comment.id }}">
+                            <label class="form-check-label" for="flexCheckDefault{{ formattedCommentArchived.comment.id }}"></label>
+                        </div>
+                        <p class="blog-post-meta">{{ formattedCommentArchived.publicationMessage }} par<span class="text-capitalize"> {{ formattedCommentArchived.comment.name }}</span></p>
+                    </div>
+                    <p class="text-center text-break">{{ formattedCommentArchived.comment.comments }}</p>
+                    <p id="rating">Note: <span class="rating" data-rating="{{ formattedCommentArchived.comment.rating }}"></span><span class="etoiles"></span></p>
+                    <hr>
+                </article>
+            {% endfor %}
+            <button type="submit" name="unarchive" class="btn btn-warning">Désarchiver</button>
+            <button type="submit" name="delete" class="btn btn-danger">Supprimer</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
 <!-- Toast Notification -->
 <div class="toast-container position-fixed top-50 start-50 p-3">
     {% for message in app.session.flashbag.get('success') %}

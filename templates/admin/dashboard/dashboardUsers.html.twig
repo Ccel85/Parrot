@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord administrateur{% endblock %}
+{% block title %}Tableau de bord employé{% endblock %}
 
 {% block body %}
 <div>
@@ -10,11 +10,11 @@
         <nav>   
             <div class=" menuAdmin">
                 <ul class="list-group">
-                    <a href="{{ path('app_accueil') }}">
+                    <a href="{{ path('app_comments') }}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des avis</li></a>
                     <a href="{{ path('app_occasions_show') }}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion des véhicules</li></a>
-                    <a href="{{ path('app_accueil') }}">
+                    <a href="{{ path('app_admin_messages') }}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Gestion Message client</li></a>
                     <a href="{{ path('app_logout') }}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">Déconnexion</li></a><br>
@@ -25,16 +25,16 @@
         <div class="tableauBord">
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href = "{{ path('app_accueil') }}">Nombre de message non lu</a>
-                    <span class="badge  rounded-pill m-2"></span>
+                <a href = "{{ path('app_admin_messages') }}">Nombre de message non lu</a>
+                    <span class="badge  rounded-pill m-2">{{ totalmessages }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href ="{{ path('app_accueil') }}">Nombre d'annonce en ligne</a>
-                    <span class="badge  rounded-pill m-2"></span>
+                <a href ="{{ path('app_occasions_show') }}">Nombre d'annonce en ligne</a>
+                    <span class="badge  rounded-pill m-2">{{ totalcars }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href = "{{ path('app_accueil') }}">Nouveaux avis </a>
-                    <span href ="{{ path('app_accueil') }}"class="badge  rounded-pill m-2"></span>
+                <a href = "{{ path('app_comments') }}">Nouveaux avis </a>
+                    <span href ="{{ path('app_accueil') }}"class="badge  rounded-pill m-2">{{ totalmessages }}</span>
                 </li>
             </ul>
         </div>

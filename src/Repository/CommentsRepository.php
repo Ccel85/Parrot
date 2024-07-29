@@ -33,6 +33,15 @@ public function lastBestComments(): array
         ;
     }
 
+    public function countCommentsNotArchived(): int
+        {
+            $qb = $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->where('c.isArchived = :isArchived')
+            ->setParameter('isArchived', false);
+
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
 
 
 //    public function findOneBySomeField($value): ?Comments

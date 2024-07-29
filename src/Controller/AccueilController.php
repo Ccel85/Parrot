@@ -36,15 +36,7 @@ class AccueilController extends AbstractController
             'lastBestComments' => $lastBestComments
         ]);
     }
-        /*$lastBestComments = $commentsRepository->lastBestComments();
-        $horaires = $horairesRepository->findAll();
-        $garages = $garagesRepository->findAll();
-        return $this->render('accueil/index.html.twig',[
-            'garages'=>$garages,
-            'horaires'=>$horaires,
-            'lastBestComments' => $lastBestComments
-        ]);*/
-
+    
     private function getPublicationMessage(\DateTimeImmutable $date): string
     {
         $datePublication = $date->getTimestamp();

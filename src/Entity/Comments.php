@@ -30,6 +30,9 @@ class Comments
     #[Assert\NotBlank()]
     private ?string $name = null;
 
+    #[ORM\Column]
+    private ?bool $isArchived = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ public function setIsCreatedAtValue()
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function isArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    public function setIsArchived(bool $isArchived): static
+    {
+        $this->isArchived = $isArchived;
 
         return $this;
     }
