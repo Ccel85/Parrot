@@ -15,6 +15,19 @@ class AnnoncesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Annonces::class);
     }
+     //RECUPERER VALEUR MIN MAX DE RANGE
+function minMaxRange(){
+    // Exemple de requête pour obtenir les valeurs minimales et maximales
+        $qb = $this->createQueryBuilder('c')
+            ->select('MIN(c.prix) AS min_prix,
+            MAX(c.prix) AS max_prix,
+            MIN(c.annee) AS min_annee,
+            MAX(c.annee) AS max_annee,
+            MIN(c.km) AS min_km,
+            MAX(c.km) AS max_km');
+
+        return $qb->getQuery()->getSingleResult();
+    }
 
     //    /**
     //     * @return Annonces[] Returns an array of Annonces objects

@@ -18,6 +18,7 @@ class OccasionsController extends AbstractController
     #[Route('/occasions', name: 'app_occasions_index')]
     public function index(AnnoncesRepository $annoncesrepository,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
     {
+        $minMaxValues = $annoncesrepository->minMaxRange();
         $annonces = $annoncesrepository->findAll();
         $garages = $garagerepository->findAll();
         $horaires = $horairesRepository->findAll();
@@ -25,6 +26,7 @@ class OccasionsController extends AbstractController
             'annonces' => $annonces,
             'garages' => $garages,
             'horaires'=>$horaires,
+            'minMaxValues' => $minMaxValues,
 
         ]);
     }
@@ -41,7 +43,7 @@ class OccasionsController extends AbstractController
         $autresEquipements = $annonces->getAutresEquipements() ? explode(',', $annonces->getAutresEquipements()) : [];
         $garages = $garagerepository->findAll();
         $horaires = $horairesRepository->findAll();
-       
+    
         return $this->render('/occasions/details.html.twig', [
             'annonces' => $annonces,
             'garages' => $garages,
@@ -81,6 +83,7 @@ class OccasionsController extends AbstractController
     #[Route('admin/occasions/show', name: 'app_occasions_show')]
     public function show(AnnoncesRepository $annoncesrepository,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
     {
+        
         $annonces = $annoncesrepository->findAll();
         $garages = $garagerepository->findAll();
         $horaires = $horairesRepository->findAll();
@@ -88,6 +91,7 @@ class OccasionsController extends AbstractController
             'annonces' => $annonces,
             'garages' => $garages,
             'horaires'=>$horaires,
+        
 
         ]);
     }
