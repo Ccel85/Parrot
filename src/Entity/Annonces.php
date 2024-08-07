@@ -268,25 +268,23 @@ public function setCreatedAtValue()
         return $this;
     }
 
-    /**
-     * @return Collection<int, Images>
-     */
+    
     public function getImages(): Collection
     {
         return $this->images;
     }
 
-    public function addImage(Images $image): static
+    public function addImage(Images $image): self
     {
         if (!$this->images->contains($image)) {
-            $this->images->add($image);
+            $this->images[]=$image;
             $image->setPathImages($this);
         }
 
         return $this;
     }
 
-    public function removeImage(Images $image): static
+    public function removeImage(Images $image): self
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)

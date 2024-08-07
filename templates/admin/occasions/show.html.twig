@@ -64,7 +64,7 @@ $minMaxRange = minMaxRange($adminpdo);#}
         <!---->
             
               <a  href="{{ path('app_occasions_edit',{'id': annonce.id}) }}" class="button-occasions" >Modifier</a>
-              <a  href="{{ path('app_occasions_delete',{'id': annonce.id}) }}"   class="button-occasions">Supprimer</a>
+              <a  href="{{ path('annonce_remove',{'id': annonce.id}) }}"   class="button-occasions">Supprimer</a>
           <div>Référence de l'annonce : 00{{annonce.id}}</div>
         </div>
       </div>

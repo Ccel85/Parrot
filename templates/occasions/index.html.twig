@@ -38,7 +38,9 @@
                 <div class="container carCard">
                     <div class="card" id="card">
                         <div class="card-body">
-                            <img class="card-img-top" src="{#{ asset(annonce.pathImage) }#}" alt="vehicule">
+                            {% for image in annonce.images %}
+                            <img class="card-img-top" src="{{ asset('uploads/images/' ~ image.filename) }}" alt="vehicule">
+                            {% endfor %}
                             <h2 class="card-title">{{ annonce.constructeur }} {{ annonce.modele }}</h2>
                             <div class="logo-card">
                                 <div class="logos">
@@ -67,29 +69,12 @@
     </div>
 </div>
 {% endblock %}
+ {% block javascripts %}
 
-{#% block javascripts %}
+    <script src="{{asset('js/occasions.js') }}"></script>
+    {% block importmap %}{{ importmap('app') }}{% endblock %}
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            function afficherValeur(sliderId, displayId) {
-                var slider = document.getElementById(sliderId);
-                var display = document.getElementById(displayId);
-                display.textContent = slider.value;
-            }
-
-            function getFilteredVehicles(prix, annee, km) {
-                // Implementation for filtering vehicles based on slider values
-                console.log('Filtering vehicles with:', { prix, annee, km });
-                // Add your AJAX or filtering logic here
-            }
-
-            // Initialize display values
-            afficherValeur("prix", "prixValeur");
-            afficherValeur("annee", "anneeValeur");
-            afficherValeur("km", "kmValeur");
-
-            // Add event listeners for sliders
-            document.getElementById("prix").addEventListener("input", function () {
+        document.getElementById("prix").addEventListener("input", function () {
                 afficherValeur("prix", "prixValeur");
                 getFilteredVehicles(
                     parseInt(document.getElementById("prix").value),
@@ -115,6 +100,6 @@
                     parseInt(document.getElementById("km").value)
                 );
             });
-        });
-    </script>
-{% endblock %#}
+</script>
+{% endblock %}
+

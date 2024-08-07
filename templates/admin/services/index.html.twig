@@ -3,11 +3,17 @@
 {% block title %}Nos services{% endblock %}
 
 {% block body %}
+<h1 class= "text-center">Nos Services</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+            <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nos services</li>
+        </ol>
+    </nav>
 <div>
-    <h1 class= "text-center">Nos Services</h1>
-    {% if services is empty %}
-        <p>Pas de données à afficher</p>
-    {% else %}
+        {% if services is empty %}
+            <p>Pas de données à afficher</p>
+        {% else %}
     <div class="container">
         <div class="row">
             {% for service in services %}

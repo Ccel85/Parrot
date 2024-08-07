@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Annonces;
 use App\Form\AnnoncesType;
 use App\Repository\GarageRepository;
@@ -11,7 +12,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class OccasionsController extends AbstractController
 {
@@ -75,7 +78,7 @@ class OccasionsController extends AbstractController
         return $this->render('admin/occasions/new.html.twig', [
             'garages' => $garages,
             'horaires'=>$horaires,
-            'form' => $form,
+            'form' => $form->createView(),
 
         ]);
     }
@@ -96,39 +99,70 @@ class OccasionsController extends AbstractController
         ]);
     }
 
-    #[Route('admin/occasions/{id}/edit', name: 'app_occasions_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
-    public function edit(?Annonces $annonces, Request $request,GarageRepository $garagesRepository,HorairesRepository $horairesRepository, EntityManagerInterface $manager): Response
+    #[Route('occasions/{id}/edit', name: 'app_occasions_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    public function edit(?Annonces $annonces, Request $request,GarageRepository $garagesRepository,HorairesRepository $horairesRepository, EntityManagerInterface $manager,SluggerInterface $slugger): Response
     {
-        $annonces ??= new Annonces();
-        $form = $this->createForm(AnnoncesType::class, $annonces);
+            $annonces ??= new Annonces();
+            $form = $this->createForm(AnnoncesType::class, $annonces);
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($annonces);
-            $manager->flush();
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
 
+                $action = $request->request->get('action');
+                if ($action === 'save') {
+                    $image = $form->get('images')->getData();
+
+                    foreach ($image as $imageFile) {
+                        if ($imageFile) {
+                            $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                            $safeFilename = $slugger->slug($originalFilename);
+                            $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+
+                            try {
+                                $imageFile->move(
+                                    $this->getParameter('images_directory'),
+                                    $newFilename
+                                );
+                            } catch (FileException $e) {
+                                // Gérer l'exception selon vos besoins
+                            }
+
+                            $image = new Images();
+                            $image->setFilename($newFilename);
+                            $image->setPathImages($annonces); // Associer l'image à l'annonce
+                            $annonces->addImage($image); // Ajouter l'image à l'annonce
+                        }
+                    }
+                            $manager->persist($annonces);
+                            $manager->flush();
+                
+                return $this->redirectToRoute('app_occasions_show');
+            }
+            if ($action === 'delete') {
+                return $this->redirectToRoute('annonce_remove', ['id' => $annonces->getId()]);
+            } else {
+                return $this->redirectToRoute('app_occasions_show');
+            }
+            }
+            $horaires = $horairesRepository->findAll();
+            $garages = $garagesRepository->findAll();
+            return $this->render('admin/occasions/edit.html.twig', [
+                'form' => $form->createView(),
+                'annonces' => $annonces, // Passer l'entité annonces au template
+                'horaires'=>$horaires,
+                'garages' => $garages,
+            ]);
+        
+    }
+    
+    #[Route('/annonce/{id}/remove', name: 'annonce_remove')]
+        public function remove(Annonces $annonces, EntityManagerInterface $entityManager): Response
+        {
+            $entityManager->remove($annonces);
+            $entityManager->flush();
+    
             return $this->redirectToRoute('app_occasions_show');
         }
-        $horaires = $horairesRepository->findAll();
-        $garages = $garagesRepository->findAll();
-        return $this->render('admin/occasions/edit.html.twig', [
-            'form' => $form,
-            'annonces' => $annonces, // Passer l'entité annonces au template
-            'horaires'=>$horaires,
-            'garages' => $garages,
-        ]);
-    }
-
-    #[Route('/occasions/{id}/delete', name: 'app_occasions_delete')]
-    //#[IsGranted('ROLE_ADMIN')] // Optional: restrict access to admins
-    public function delete(Request $request, Annonces $annonces, EntityManagerInterface $manager): Response
-    {
-        // Check CSRF token validity
-        //if ($this->isCsrfTokenValid('delete'.$annonces->getId(), $request->request->get('_token'))) {
-            
-            $manager->remove($annonces);
-            $manager->flush();
-
-        return $this->redirectToRoute('app_occasions_show'); // Redirect to the listing page
-    }
 }
+
+

@@ -3,6 +3,12 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+            <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+        </ol>
+    </nav>
 <div class="containerMessage">
     <div class="contact row">
         <div class=" cardInfo">

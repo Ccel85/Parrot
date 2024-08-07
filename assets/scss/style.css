@@ -9,7 +9,6 @@ body , body a ,h3{
   color: #173258;
   font-family:Raleway;
   font-size: 1.8rem;
- /* padding: 1rem;*/
 }
 /*header*/
 header,footer{
@@ -326,8 +325,6 @@ div.cards{
   
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      /* grid-gap: 10px; */
-  
 }
 .card-body{
   display: flex;

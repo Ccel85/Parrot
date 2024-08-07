@@ -5,14 +5,17 @@ namespace App\Form;
 use App\Entity\Annonces;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class AnnoncesType extends AbstractType
 {
@@ -65,7 +68,23 @@ class AnnoncesType extends AbstractType
             ->add('autresEquipements',TextareaType::class,[
                     'label' => 'Equipement Autre',
                     ])
-        ;
+                    ->add('images', FileType::class, [
+                        'label' => 'Images (JPEG/PNG files)',
+                        'mapped' => false,
+                        'required' => false,
+                        'multiple' => true,
+                        'constraints' => [
+                            new File([
+                                'maxSize' => '5M',
+                                'mimeTypes' => [
+                                    'image/jpeg',
+                                    'image/png',
+                                ],
+                                'mimeTypesMessage' => 'Please upload a valid JPEG or PNG image',
+                            ])
+                        ]
+                    ])
+                ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

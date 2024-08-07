@@ -4,6 +4,12 @@
 
 {% block body %}
   <div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+            <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nos services</li>
+        </ol>
+    </nav>
     <h2 class= "text-center">Nos Services</h2>
     {% if services is empty %}
       <p>Pas de données à afficher</p>
