@@ -24,10 +24,6 @@ class CommentsType extends AbstractType
                 'label' => 'Laissez nous une note (de 1 à 5)',
                 'attr' => ['min' => 1, 'max' => 5],
             ])
-            ->add('isArchived',CheckboxType::class,[
-                'label' => 'A archiver',
-                'required' => false,
-            ])
         ;
     }
 

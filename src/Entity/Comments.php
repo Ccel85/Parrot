@@ -31,7 +31,7 @@ class Comments
     private ?string $name = null;
 
     #[ORM\Column]
-    private ?bool $isArchived = null;
+    private ?bool $isArchived = false;
 
     public function getId(): ?int
     {

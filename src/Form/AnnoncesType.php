@@ -64,6 +64,7 @@ class AnnoncesType extends AbstractType
                 ])
             ->add('autresEquipements',TextareaType::class,[
                     'label' => 'Equipement Autre',
+                    'required' => false
                     ])
         ;
     }
