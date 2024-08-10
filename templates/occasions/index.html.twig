@@ -65,9 +65,16 @@ $minMaxRange = minMaxRange($adminpdo);#}
         {% for annonce in annonces %} 
             <!--affichage annonce car-->
         <div class="container carCard">
-            <div class="card" id="card" >
-                <div class="card-body"> 
-                    <img class="card-img-top" src="{{'car.pathImage'}}" alt="vehicule">
+            <div class="card h-100" id="card" >
+                <div class="card-body p-0"> 
+            {% if annonce.images is empty %}
+            <p>Il n'y a pas d'image</p>
+            {% else %}
+                {#% for image in annonce.images %#}
+                {% set firstImage = annonce.images|first %}
+                <img class="card-img-top" src="{{ asset('/upload/' ~ firstImage.imagesfiles) }}" alt="vehicule">
+            {#% endfor %#}
+            {% endif %}
                     <h2 class="card-title">{{annonce.constructeur}} {{annonce.modele}}</h2>
                     <div class="logo-card">
                         <div class="logos">
@@ -83,8 +90,8 @@ $minMaxRange = minMaxRange($adminpdo);#}
                             <p class="year">{{annonce.annee}}</p>
                         </div>
                     </div>
-                    <h2 class="prix">{{annonce.prix}} €</h2> 
-                    <div class="d-flex flex-column align-self-end">
+                    <h2 class="prix">{{annonce.prix|number_format(0, '.', ' ')}} €</h2> 
+                    <div class="d-flex flex-column align-self-end card-footer pb-0 mt-auto">
                         <a  href="{{ path('app_occasions_details',{'id': annonce.id}) }}" class="button-occasions" value="{{annonce.id}}">Plus de detail</a>
                         <div>Référence de l'annonce : 00{{annonce.id}}</div>
                     </div>

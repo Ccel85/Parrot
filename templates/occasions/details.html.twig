@@ -18,7 +18,7 @@
       <div class="carousel-inner text-center">
           {% for image in annonces.images %}
               <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-                  <img class="card-img imgcarousel" src="{{ asset(image) }}" alt="Image {{ loop.index }}">
+                  <img class="card-img imgcarousel" src="{{ asset('/upload/' ~ image.imagesfiles) }}" alt="Image {{ loop.index }}">
               </div>
           {% endfor %}
       </div>
@@ -48,41 +48,43 @@
     </div>
     <hr>
     <div class="carCaracteristique">
-      <h2>Caractéristiques générales :</h2><br>
-      <ul class="list-group">
-        <li class="list-group">Couleur :{{ annonces.couleur }}</li>
-        <li class="list-group">Boite :{{ annonces.boite }}</li>
-        <li class="list-group">Nombre de portes :{{ annonces.nbrePorte }}</li>
-        <li class="list-group">Puissance fiscale :{{ annonces.puissanceFiscal }} CV</li>
-        <li class="list-group">Puissance DIN :{{ annonces.puissance }}</li>
-      </ul>
+        <h2>Caractéristiques générales :</h2><br>
+        <ul class="list-group ">
+            <li class="list-group-item">Couleur :{{ annonces.couleur }}</li>
+            <li class="list-group-item">Boite :{{ annonces.boite }}</li>
+            <li class="list-group-item">Nombre de portes :{{ annonces.nbrePorte }}</li>
+            <li class="list-group-item">Puissance fiscale :{{ annonces.puissanceFiscal }} CV</li>
+            <li class="list-group-item">Puissance DIN :{{ annonces.puissance }}</li>
+        </ul>
     </div>
     <hr>
-    <div class="carInfos">
-        <div class="carInterieur">
+    <div class="carCaracteristique">
+        <div class="carCaracteristique">
             <h2>Equipement intérieur :</h2><br>
-            <ul class="list-group">
+            <ul class="list-group ">
             {% for interieur in equipementInterieur %}
-                <li class="list-group">{{ interieur }}<br></li>
+                <li class="list-group-item">{{ interieur }}<br></li>
             {% endfor %}
             </ul>
         </div>
         <br>
-        <div class="chassis">
+        <hr>
+        <div class="carCaracteristique">
             <h2>Equipement exterieur :</h2><br>
-            <ul class="list-group">
+            <ul class="list-group ">
             {% for exterieur in equipementExterieur %}
-                <li class="list-group">{{ exterieur }}</li>
+                <li class="list-group-item">{{ exterieur }}</li>
             {% endfor %}
             </ul>
         </div>
         <br>
+        <hr>
         {% if autresEquipements is not empty %}
-        <div class="autre">
-            <h2>Autre :</h2><br>
-            <ul class="list-group">
+        <div class="carCaracteristique">
+            <h2>Autre :</h2>
+            <ul class="list-group ">
                 {% for autre in autresEquipements %}
-                    <li class="list-group">{{ autre }}</li>
+                    <li class="list-group-item">{{ autre }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -90,16 +92,16 @@
     </div>
     <hr>
     <div class="prix">
-        <h2>Prix : {{ annonces.prix }} €</h2>
+        <h2>Prix : {{ annonces.prix|number_format(0, '.', ' ') }} €</h2>
     </div>
-    <hr>
-    <div class="footerOccasion">
+    <div class="footerOccasion card-footer pb-0 mt-auto">
         <div>Référence de l'annonce : 00{{ annonces.id }}</div>
+        <hr>
         <div>
-            <button class="demandeInfo button" id="demandeInfo" name="demandeInfo">Demande d'info</button>
+            <button class="demandeInfo btn btn-warning" id="demandeInfo" name="demandeInfo">Demande d'info</button>
         </div>
         <div>
-            <a class="button" href="{{ path('app_occasions_index') }}">Retour</a>
+            <a class="btn btn-danger" href="{{ path('app_occasions_index') }}">Retour</a>
         </div>
     </div>
   </div>

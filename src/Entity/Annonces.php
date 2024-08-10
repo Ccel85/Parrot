@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AnnoncesRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
 #[ORM\HasLifecycleCallbacks()]
+#[Vich\Uploadable]
 
 class Annonces
 {
@@ -75,8 +77,9 @@ class Annonces
 
     /**
      * @var Collection<int, Images>
-     */
-    #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'path_images')]
+    **/
+
+    #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'path_images', cascade: ['persist'])]
     private Collection $images;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

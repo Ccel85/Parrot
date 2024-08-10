@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use App\Repository\ImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ImagesRepository;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ImagesRepository::class)]
 class Images
@@ -18,6 +19,9 @@ class Images
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank()]
     private ?Annonces $path_images = null;
+
+    #[ORM\Column(length: 255)]
+    private $imagesfiles = null;
 
     public function getId(): ?int
     {
@@ -34,5 +38,15 @@ class Images
         $this->path_images = $path_images;
 
         return $this;
+    }
+
+    public function getImagesfiles(): ?string
+    {
+        return $this->imagesfiles;
+    }
+
+    public function setImagesfiles(string $imagesfiles = null): void
+    {
+        $this->imagesfiles = $imagesfiles;
     }
 }

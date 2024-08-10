@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Annonces;
 use App\Form\AnnoncesType;
 use App\Repository\GarageRepository;
@@ -63,6 +64,24 @@ class OccasionsController extends AbstractController
         $form-> handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            // On récupère les images transmises
+        $images = $form->get('images')->getData();
+    
+        // On boucle sur les images
+        foreach($images as $image){
+            // On génère un nouveau nom de fichier
+            $fichier = md5(uniqid()).'.'.$image->guessExtension();
+        
+            // On copie le fichier dans le dossier uploads
+            $image->move(
+                $this->getParameter('images_directory'),
+                $fichier
+            );
+            // On crée l'image dans la base de données
+            $img = new Images();
+            $img->setImagesfiles($fichier);
+            $annonces->addImage($img);
+        }
             $manager->persist($annonces);
             $manager->flush();
 
@@ -74,6 +93,7 @@ class OccasionsController extends AbstractController
             'garages' => $garages,
             'horaires'=>$horaires,
             'form' => $form,
+            'annonces' => $annonces,
 
         ]);
     }
@@ -100,6 +120,24 @@ class OccasionsController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+                // On récupère les images transmises
+        $images = $form->get('images')->getData();
+    
+        // On boucle sur les images
+        foreach($images as $image){
+            // On génère un nouveau nom de fichier
+            $fichier = md5(uniqid()).'.'.$image->guessExtension();
+        
+            // On copie le fichier dans le dossier uploads
+            $image->move(
+                $this->getParameter('images_directory'),
+                $fichier
+            );
+            // On crée l'image dans la base de données
+            $img = new Images();
+            $img->setImagesfiles($fichier);
+            $annonces->addImage($img);
+        }
             $manager->persist($annonces);
             $manager->flush();
 

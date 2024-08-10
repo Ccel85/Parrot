@@ -11,8 +11,15 @@
       <!--affichage annonce car-->
       <div class="container carCard">
         <div class="card" id="card" >
-          <div class="card-body"> 
-            <img class="card-img-top" src="{{'car.pathImage'}}" alt="vehicule">
+          <div class="card-body p-0"> 
+          {% if annonce.images is empty %}
+            <p>Il n'y a pas d'image</p>
+          {% else %}
+            {#% for image in annonce.images %#}
+              {% set firstImage = annonce.images|first %}
+              <img class="card-img-top" src="{{ asset('/upload/' ~ firstImage.imagesfiles) }}" alt="vehicule">
+            {#% endfor %#}
+          {% endif %}
             <h2 class="card-title">{{annonce.constructeur}} {{annonce.modele}}</h2>
             <div class="logo-card">
               <div class="logos">
@@ -29,11 +36,13 @@
               </div>
             </div>
             <div>
-              <h2 class="prix">{{annonce.prix}} €</h2>  
+              <h2 class="prix pricing-card-title">{{annonce.prix|number_format(0, '.', ' ')}} €</h2>  
             </div>
-            <a  href="{{ path('app_occasions_edit',{'id': annonce.id}) }}" class="button-occasions" >Modifier</a>
-            <a  href="{{ path('app_occasions_delete',{'id': annonce.id}) }}"   class="button-occasions">Supprimer</a>
+            <div class="card-footer d-flex flex-column align-self-end pb-0 mt-auto">
+              <a  href="{{ path('app_occasions_edit',{'id': annonce.id}) }}" class="button-occasions" >Modifier</a>
+              <a  href="{{ path('app_occasions_delete',{'id': annonce.id}) }}"   class="button-occasions">Supprimer</a>
             <div>Référence de l'annonce : 00{{annonce.id}}</div>
+            </div>
           </div>
         </div>
       </div>
