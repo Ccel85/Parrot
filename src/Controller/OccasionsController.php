@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OccasionsController extends AbstractController
 {
-    #[Route('/occasions', name: 'app_occasions_index')]
+    #[Route('/occasions', name: 'app_occasions_index',methods: ['GET'])]
     public function index(AnnoncesRepository $annoncesrepository,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
     {
         $annonces = $annoncesrepository->findAll();

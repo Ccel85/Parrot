@@ -8,6 +8,12 @@
     {% if services is empty %}
         <p class="text-center">Page en cours</p>
     {% else %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+            <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nos services</a></li>
+        </ol>
+    </nav>
     <div class="container">
         <div class="row">
             {% for service in services %}

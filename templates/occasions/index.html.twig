@@ -58,6 +58,12 @@ $minMaxRange = minMaxRange($adminpdo);#}
         </div>
     </div>
 </div>-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item"><a href="{{ path('app_accueil') }}">Accueil</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Nos occasions</a></li>
+    </ol>
+</nav>
 {%  if annonces is empty %}
 <p class='text-center'> Il n'y a pas d'annonce actuellement.</p>
     {% else %}
