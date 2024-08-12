@@ -15,7 +15,15 @@ class ImagesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Images::class);
     }
-
+    /*public function ImagesCars(int $annonceId): array
+{
+    return $this->createQueryBuilder('i')
+        ->join('i.path_images', 'a')  // Relie les images à l'entité Annonces
+        ->andWhere('a.id = :val')     // Filtre par l'ID de l'annonce
+        ->setParameter('val', $annonceId)  // Passe l'ID de l'annonce comme paramètre
+        ->getQuery()
+        ->getResult();
+}*/
     //    /**
     //     * @return Images[] Returns an array of Images objects
     //     */

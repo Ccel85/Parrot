@@ -117,17 +117,27 @@ class OccasionsController extends AbstractController
     {
         $annonces ??= new Annonces();
         $form = $this->createForm(AnnoncesType::class, $annonces);
-
         $form->handleRequest($request);
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Gestion de la suppression des images sélectionnées
+            $imagesToDelete = $request->get('delete_images', []);
+            if (!empty($imagesToDelete)){
+                foreach ($imagesToDelete as $imageId) {
+                    $image = $manager->getRepository(Images::class)->find($imageId);
+                    if ($image) {
+                        $annonces->removeImage($image);
+                        $manager->remove($image);
+                    }
+                }
+            }
                 // On récupère les images transmises
-        $images = $form->get('images')->getData();
-    
-        // On boucle sur les images
-        foreach($images as $image){
+            $images = $form->get('images')->getData();
+            // On boucle sur les images
+            foreach($images as $image){
             // On génère un nouveau nom de fichier
             $fichier = md5(uniqid()).'.'.$image->guessExtension();
-        
             // On copie le fichier dans le dossier uploads
             $image->move(
                 $this->getParameter('images_directory'),

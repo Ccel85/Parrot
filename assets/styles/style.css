@@ -393,6 +393,24 @@ div.cards{
   align-items: center;
   width:100%;
 }
+
+.images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-container {
+  width: 150px; /* Ajustez la largeur selon vos besoins */
+  height: 150px;
+  overflow: hidden;
+}
+
+.img-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 /*session*/
 .modalSession ,.footerOccasion{
   display: flex;
