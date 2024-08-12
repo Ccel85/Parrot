@@ -211,6 +211,10 @@ a:hover{
 .etoiles{
   color:#be1e2d;
 }
+
+.avis{
+  font-size: 1.2rem;
+}
 /* nos services */
 
 .service{

@@ -28,11 +28,13 @@
         {%  if lastBestComments is empty %}
             <p class='text-center'> Il n'y a pas d'avis.</p>
         {% else %}
-            <div class="list-group">
+            <div class="list-group avis">
                 <h2 class="blog-post-title">Nos clients nous recommandent :</h2>
                 {% for formattedComment in formattedComments %}
                 <article class="blog-post">
-                    <p class="blog-post-meta ">{{formattedComment.publicationMessage}} par<span class ="text-capitalize"> {{formattedComment.comment.name}}</span> </p>
+                    <p class="blog-post-meta">
+                    <span class=" textRed">{{formattedComment.publicationMessage}}</span> 
+                    par<span class ="text-capitalize"> {{formattedComment.comment.name}}</span> </p>
                     <p class="text-center text-break">{{formattedComment.comment.comments}}</p>
                     <p id="rating">Note: <span class="rating" data-rating="{{ formattedComment.comment.rating }}"></span>
                     <span class="etoiles"></span></p>

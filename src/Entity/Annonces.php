@@ -79,7 +79,7 @@ class Annonces
      * @var Collection<int, Images>
     **/
 
-    #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'path_images', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'path_images', cascade: ['persist','remove'])]
     private Collection $images;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
