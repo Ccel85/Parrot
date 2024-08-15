@@ -15,6 +15,15 @@ class AnnoncesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Annonces::class);
     }
+    public function getMinMaxValues()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->select('MIN(a.prix) AS min_prix, MAX(a.prix) AS max_prix, 
+                    MIN(a.annee) AS min_annee, MAX(a.annee) AS max_annee,
+                    MIN(a.km) AS min_km, MAX(a.km) AS max_km');
+
+        return $qb->getQuery()->getSingleResult();
+    }
 
     //    /**
     //     * @return Annonces[] Returns an array of Annonces objects

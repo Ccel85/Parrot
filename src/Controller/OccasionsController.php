@@ -17,15 +17,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OccasionsController extends AbstractController
 {
     #[Route('/occasions', name: 'app_occasions_index',methods: ['GET'])]
-    public function index(AnnoncesRepository $annoncesrepository,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
+    public function index(AnnoncesRepository $annoncesRepository,HorairesRepository $horairesRepository,GarageRepository $garagerepository): Response
     {
-        $annonces = $annoncesrepository->findAll();
+        $annonces = $annoncesRepository->findAll();
         $garages = $garagerepository->findAll();
         $horaires = $horairesRepository->findAll();
+        $minMaxValues = $annoncesRepository->getMinMaxValues();
         return $this->render('occasions/index.html.twig', [
             'annonces' => $annonces,
             'garages' => $garages,
             'horaires'=>$horaires,
+            'minMaxValues' => $minMaxValues,
 
         ]);
     }
