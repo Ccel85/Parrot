@@ -9,18 +9,18 @@
     <div class="filter">
         <div class="price">
             <h3>Prix</h3>
-            <input type="range" id="prix" name="prix" min={{ minMaxValues.min_prix }} max={{ minMaxValues.max_prix }} data-prix={{ minMaxValues.max_prix }} step="1000" >
-            <span id="prixValeur">{{ minMaxValues.max_prix }}</span>
+            <input type="range" id="prix" name="prix" min={{ minMaxValues.min_prix }} max={{ minMaxValues.max_prix }} value={{ minMaxValues.max_prix }} step="1000" >
+            <span id="prixValeur"></span>
         </div>
         <div class="année">
             <h3>Année</h3>
-            <input type="range" id="annee" name="annee" min={{ minMaxValues.min_annee }} max={{ minMaxValues.max_annee }} data-annee={{ minMaxValues.max_annee }} step="1" >
-            <span id="anneeValeur">{{ minMaxValues.max_annee }}</span>
+            <input type="range" id="annee" name="annee" min={{ minMaxValues.min_annee }} max={{ minMaxValues.max_annee }} value={{ minMaxValues.max_annee }} step="1" >
+            <span id="anneeValeur"</span>
         </div>
         <div class="km">
             <h3>Kilométrage</h3>
-            <input type="range" id="km" name="km" min={{ minMaxValues.min_km }} max={{ minMaxValues.max_km }}  data-km={{ minMaxValues.max_km }}step="5000">
-            <span id="kmValeur">{{ minMaxValues.max_km }}</span>
+            <input type="range" id="km" name="km" min={{ minMaxValues.min_km }} max={{ minMaxValues.max_km }} value={{ minMaxValues.max_km }} step="5000">
+            <span id="kmValeur"></span>
         </div>
     </div>
 </div>

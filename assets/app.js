@@ -10,6 +10,8 @@ import './styles/style.css';
 import './styles/app.css';
 //import '../public/js/starRating.js'
 import 'bootstrap';
-import './script.js';
+//import './script.js';
+import './styles/starRating.js'
+//import './styles/carContact.js'
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

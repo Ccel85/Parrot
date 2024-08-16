@@ -3,21 +3,32 @@
             const outputElement = document.getElementById(outputId);
             outputElement.textContent = inputElement.value;
         }
-
-        function getFilteredVehicles(prix, annee, km) {
+         //**Fonction appelée lors de la modification du curseur de prix
+        function updatePrixValue() {
+    // Récupérer la valeur du curseur de prix
+        var prixValue = document.getElementById('prix').value;
+    // Mettre à jour le contenu de l'élément span avec la valeur du curseur
+        document.getElementById('prixValeur').innerText = prixValue + ' €';
+        }
+        function getFilteredVehicles(prixValue,anneeValue,kmValue) {
             const cards = document.querySelectorAll('.carCard');
             cards.forEach(card => {
-                const cardPrix = parseInt(card.getAttribute('data-prix'));
-                const cardAnnee = parseInt(card.getAttribute('data-annee'));
-                const cardKm = parseInt(card.getAttribute('data-km'));
+                const cardPrix =  parseInt(card.querySelector('.prix').innerText);
+                console.log(cardPrix);
+                const cardAnnee = parseInt(card.querySelector('.annee').innerText);
+                const cardKm = parseInt(card.querySelector('.km').innerText);
 
-                if (cardPrix <= prix | cardAnnee <= annee | cardKm <= km) {
-                    card.style.display = "block";
+                if (cardPrix <= (prixValue+1)) {
+                    if (cardAnnee <= (anneeValue+1) && cardKm <= (kmValue+1)) {
+                      // Afficher la carte si elle correspond au critère de filtrage
+                    card.style.display = 'block';
                 } else {
-                    card.style.display = "none";
+                      // Masquer la carte si elle ne correspond pas au critère de filtrage
+                    card.style.display = 'none';
                 }
-            });
-        }
+            };
+        });
+    }
 
         document.addEventListener("DOMContentLoaded", function () {
             afficherValeur("prix", "prixValeur");

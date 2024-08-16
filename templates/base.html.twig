@@ -8,7 +8,6 @@
         
         {% block stylesheets %}
         {% endblock %}
-
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
@@ -78,8 +77,17 @@
             </nav>
         <hr>
     </header>
+    <main>
+    {% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div id="flash-message" class="alert alert-{{ type }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
     {% block body %}
     {% endblock %}
+    </main>
     <!--footer-->
     <footer>
         <div class="footer mt-3">
@@ -116,5 +124,11 @@
             </div>
         </div>
     </footer>
+    <script>
+        // Cache le message après 2.5 secondes
+        setTimeout(function(){
+            document.getElementById('flash-message').style.display = 'none';
+        }, 3000); 
+        </script>
 </body>
 </html>

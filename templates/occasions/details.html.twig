@@ -98,12 +98,12 @@
         <div>Référence de l'annonce : 00{{ annonces.id }}</div>
         <hr>
         <div>
-            <button class="demandeInfo btn btn-warning" id="demandeInfo" name="demandeInfo">Demande d'info</button>
+            <a class="demandeInfo btn btn-warning" id="demandeInfo" name="demandeInfo" href="{{ path('app_messages_new', { 'subject': 'Demande info véhicule' }) }}">Demande d'info</a>
         </div>
         <div>
             <a class="btn btn-danger" href="{{ path('app_occasions_index') }}">Retour</a>
         </div>
     </div>
-  </div>
+  </div> 
 </div>
 {% endblock %}
