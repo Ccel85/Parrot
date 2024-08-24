@@ -44,7 +44,7 @@ class OccasionsController extends AbstractController
         $autresEquipements = $annonces->getAutresEquipements() ? explode(',', $annonces->getAutresEquipements()) : [];
         $garages = $garagerepository->findAll();
         $horaires = $horairesRepository->findAll();
-       
+        
         return $this->render('/occasions/details.html.twig', [
             'annonces' => $annonces,
             'garages' => $garages,

@@ -15,10 +15,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MessagesController extends AbstractController
 {
     #[Route('/admin/messages', name: 'app_admin_messages')]
-    public function adminIndex(MessagesRepository $messageRepository,HorairesRepository $horaires,GarageRepository $garages): Response
+    public function adminIndex(MessagesRepository $messageRepository,HorairesRepository $horairesRepository,GarageRepository $garageRepository): Response
     {
         $messagesNonArchives = $messageRepository->findBy(['isArchived' => false]);
         $messagesArchives = $messageRepository->findBy(['isArchived' => true]);
+        $garages = $garageRepository->findAll();
+        $horaires = $horairesRepository->findAll();
 
         return $this->render('admin/messages/index.html.twig', [
             'messagesnonarchives' => $messagesNonArchives,

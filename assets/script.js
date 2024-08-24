@@ -1,25 +1,30 @@
-        function afficherValeur(inputId, outputId) {
-            const inputElement = document.getElementById(inputId);
-            const outputElement = document.getElementById(outputId);
-            outputElement.textContent = inputElement.value;
-        }
-         //**Fonction appelée lors de la modification du curseur de prix
-        function updatePrixValue() {
-    // Récupérer la valeur du curseur de prix
+        
+    //**Fonction appelée lors de la modification du curseur de prix
+    /*function updateValue() {
+        // Récupérer la valeur du curseur de prix
         var prixValue = document.getElementById('prix').value;
-    // Mettre à jour le contenu de l'élément span avec la valeur du curseur
-        document.getElementById('prixValeur').innerText = prixValue + ' €';
-        }
+        // Mettre à jour le contenu de l'élément span avec la valeur du curseur
+        document.getElementById('prixValeur').innerText = prixValue;
+
+        var anneeValue = document.getElementById('annee').value;
+        // Mettre à jour le contenu de l'élément span avec la valeur du curseur
+        document.getElementById('anneeValeur').innerText = anneeValue;
+
+        var kmValue = document.getElementById('km').value;
+        // Mettre à jour le contenu de l'élément span avec la valeur du curseur
+        document.getElementById('kmValeur').innerText = kmValue;
+        }*/
+    
+    //fonction filtre les annonces
         function getFilteredVehicles(prixValue,anneeValue,kmValue) {
             const cards = document.querySelectorAll('.carCard');
             cards.forEach(card => {
-                const cardPrix =  parseInt(card.querySelector('.prix').innerText);
-                console.log(cardPrix);
-                const cardAnnee = parseInt(card.querySelector('.annee').innerText);
-                const cardKm = parseInt(card.querySelector('.km').innerText);
-
-                if (cardPrix <= (prixValue+1)) {
-                    if (cardAnnee <= (anneeValue+1) && cardKm <= (kmValue+1)) {
+                const cardPrix =  parseInt(card.querySelector('.prix').innerText.replace(' €', '').replace(/\s+/g, ''));
+                const cardAnnee = parseInt(card.querySelector('.year').innerText);
+                const cardKm = parseInt(card.querySelector('.km').innerText.replace(/\s+/g, ''));
+                    console.log(cardPrix,cardAnnee,cardKm);
+                if (cardPrix <= (prixValue)) {
+                    if (cardAnnee <= (anneeValue) && cardKm <= (kmValue)) {
                       // Afficher la carte si elle correspond au critère de filtrage
                     card.style.display = 'block';
                 } else {
@@ -30,6 +35,13 @@
         });
     }
 
+    //afficher valeur sur range
+        function afficherValeur(inputId, outputId) {
+            const inputElement = document.getElementById(inputId);
+            const outputElement = document.getElementById(outputId);
+            outputElement.textContent = inputElement.value;
+        }
+    // fonction actionnant les filtres
         document.addEventListener("DOMContentLoaded", function () {
             afficherValeur("prix", "prixValeur");
             afficherValeur("annee", "anneeValeur");
@@ -38,6 +50,7 @@
             document.getElementById("prix").addEventListener("input", function () {    
                 afficherValeur("prix", "prixValeur");
                 getFilteredVehicles(parseInt(this.value), parseInt(document.getElementById("annee").value), parseInt(document.getElementById("km").value));
+                console.log(parseInt(this.value),document.getElementById("annee").value,document.getElementById("km").value)
             });
 
             document.getElementById("annee").addEventListener("input", function () {
@@ -50,3 +63,8 @@
                 getFilteredVehicles(parseInt(document.getElementById("prix").value), parseInt(document.getElementById("annee").value), parseInt(this.value));
             });
         });
+
+/* Cache le message flash après 2.5 secondes
+        setTimeout(function(){
+            document.getElementById('flash-message').style.display = 'none';
+        }, 3000); */

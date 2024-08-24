@@ -18,15 +18,12 @@
         <tbody>
             <tr>
                 <th scope="row">
-                    <input type="checkbox" class="checkboxMessage m-3" class="checkboxMessage"name="archive {{message.email}}" value='Y'>
+                    <input type="checkbox" class="checkboxMessage m-3" class="checkboxMessage"name="archive {{message.email}}" >
                     <input type="hidden" name="archive[]" id="archiveInput" class="archiveInput" value=''>
-                </th>
-                <td>Le date par M. {{message.name}}</td>
-                <td>{{message.email}}</td>
-                <td>{{message.subject}}</td>
-                <td>
-                    <a href="#">{{message.message}}</a>
-                </td>
+                    <td>Le date par M. {{message.name}}</td>
+                    <td>{{message.email}}</td>
+                    <td>{{message.subject}}</td>
+                    <td><a href="#">{{message.message}}</a></td>
                 </th>
             </tr>
             <tr>

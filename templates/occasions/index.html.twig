@@ -3,23 +3,22 @@
 {% block title %}Nos Occasions{% endblock %}
 
 {% block body %}
-
 <div class="filtres">
     <h3>Filtres:</h3>
-    <div class="filter">
-        <div class="price">
+    <div class="filters">
+        <div class="filter">
             <h3>Prix</h3>
-            <input type="range" id="prix" name="prix" min={{ minMaxValues.min_prix }} max={{ minMaxValues.max_prix }} value={{ minMaxValues.max_prix }} step="1000" >
+            <input type="range" id="prix" class="prix" name="prix" min={{ minMaxValues.min_prix }} max={{ minMaxValues.max_prix }} value={{ minMaxValues.max_prix }}   >
             <span id="prixValeur"></span>
         </div>
-        <div class="année">
+        <div class="filter">
             <h3>Année</h3>
-            <input type="range" id="annee" name="annee" min={{ minMaxValues.min_annee }} max={{ minMaxValues.max_annee }} value={{ minMaxValues.max_annee }} step="1" >
+            <input type="range" id="annee"class="annee" name="annee" min={{ minMaxValues.min_annee }} max={{ minMaxValues.max_annee }} value={{ minMaxValues.max_annee }}  >
             <span id="anneeValeur"</span>
         </div>
-        <div class="km">
+        <div class="filter">
             <h3>Kilométrage</h3>
-            <input type="range" id="km" name="km" min={{ minMaxValues.min_km }} max={{ minMaxValues.max_km }} value={{ minMaxValues.max_km }} step="5000">
+            <input type="range" id="km" class="km" name="km" min={{ minMaxValues.min_km }} max={{ minMaxValues.max_km }} value={{ minMaxValues.max_km }}>
             <span id="kmValeur"></span>
         </div>
     </div>
@@ -31,7 +30,7 @@
     </ol>
 </nav>
 {%  if annonces is empty %}
-<p class='text-center'> Il n'y a pas d'annonce actuellement.</p>
+    <p class='text-center'> Il n'y a pas d'annonce actuellement.</p>
     {% else %}
     <div class="cards"> 
         {% for annonce in annonces %} 
@@ -63,7 +62,7 @@
                         </div>
                     </div>
                     <h2 class="prix">{{annonce.prix|number_format(0, '.', ' ')}} €</h2> 
-                    <div class="d-flex flex-column align-self-end card-footer pb-0 mt-auto">
+                    <div class="d-flex flex-column card-footer pb-0 mt-auto">
                         <a  href="{{ path('app_occasions_details',{'id': annonce.id}) }}" class="button-occasions" value="{{annonce.id}}">Plus de detail</a>
                         <div>Référence de l'annonce : 00{{annonce.id}}</div>
                     </div>

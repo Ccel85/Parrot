@@ -511,6 +511,10 @@ vertical-align: top;
   align-items: center;
   flex-direction: row;
 }
+.custom-collapse {
+ max-height: 200px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
 .comments{
   display: flex;
   flex-direction: column;

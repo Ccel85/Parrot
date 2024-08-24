@@ -25,6 +25,18 @@ class AnnoncesRepository extends ServiceEntityRepository
         return $qb->getQuery()->getSingleResult();
     }
 
+    public function filters($prixFilter,$anneeFilter,$kmFilter)
+    {
+        return $this->createQueryBuilder('a')
+        ->andWhere('a.prix = :prix , a.annee = :annee , a.km = :km')
+        ->setParameter('prix', $prixFilter)
+        ->setParameter('annee',$anneeFilter)
+        ->setParameter('km',$kmFilter)
+        ->orderBy ('a.id','ASC')
+
+        ->getQuery()->getSingleResult();
+    }
+
     //    /**
     //     * @return Annonces[] Returns an array of Annonces objects
     //     */

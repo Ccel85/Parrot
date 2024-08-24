@@ -78,15 +78,15 @@
         <hr>
     </header>
     <main>
-    {% for type, messages in app.flashes %}
-    {% for message in messages %}
-        <div id="flash-message" class="alert alert-{{ type }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}
-    {% block body %}
-    {% endblock %}
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div id="flash-message" class="alert alert-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% block body %}
+        {% endblock %}
     </main>
     <!--footer-->
     <footer>
@@ -115,7 +115,6 @@
         {% endfor %}
             <div class="horaires " >
                 <div>Horaires d’ouverture:<br></div>
-                <img src="{{asset('public/logo/footer/Vector.svg')}}" alt=''>
                 {% for horaire in horaires %}
                     <div>{{horaire.joursOuverture}}:
                         {{horaire.heuresDebutAM|date('H:i')}}-{{horaire.heuresFinAM|date('H:i')}}
@@ -124,11 +123,5 @@
             </div>
         </div>
     </footer>
-    <script>
-        // Cache le message après 2.5 secondes
-        setTimeout(function(){
-            document.getElementById('flash-message').style.display = 'none';
-        }, 3000); 
-        </script>
 </body>
 </html>
