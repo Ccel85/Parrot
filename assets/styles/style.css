@@ -295,14 +295,14 @@ button:focus {
   text-align: center;
 }
 /*nos_occasions*/
-.filter{
+.filters{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   border: 3px solid #173258;
   margin: 1rem;
 }
-.filtres h3{
+.filtre h3{
   padding-left: 1rem;
   text-align: left;
 }
