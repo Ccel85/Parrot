@@ -222,14 +222,14 @@ a:hover{
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  margin: 50px;
+ /* margin: 50px;*/
   align-content: center;
   justify-content: center;
 }
 
 .nosServices p{
   text-align: left;
-  margin: 50px;
+  /*margin: 50px;*/
 }
 
 h2{
@@ -241,6 +241,11 @@ h2{
 .textRed{
 color:#be1e2d;
 font-weight: bold;
+}
+
+.imgService{
+  width : 400px;
+  height: 300px;
 }
 /* contact*/
 
@@ -593,7 +598,9 @@ vertical-align: top;
   justify-content: center;
 }
 .imgService{
-  display: inline-flex;
+max-width : 400 px;
+max-height: 300 px;
+display: inline-flex;
 flex-direction: row;
 flex-wrap: wrap;
 align-content: space-around;
