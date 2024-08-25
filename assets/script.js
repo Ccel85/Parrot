@@ -1,19 +1,3 @@
-        
-    //**Fonction appelée lors de la modification du curseur de prix
-    /*function updateValue() {
-        // Récupérer la valeur du curseur de prix
-        var prixValue = document.getElementById('prix').value;
-        // Mettre à jour le contenu de l'élément span avec la valeur du curseur
-        document.getElementById('prixValeur').innerText = prixValue;
-
-        var anneeValue = document.getElementById('annee').value;
-        // Mettre à jour le contenu de l'élément span avec la valeur du curseur
-        document.getElementById('anneeValeur').innerText = anneeValue;
-
-        var kmValue = document.getElementById('km').value;
-        // Mettre à jour le contenu de l'élément span avec la valeur du curseur
-        document.getElementById('kmValeur').innerText = kmValue;
-        }*/
     
     //fonction filtre les annonces
         function getFilteredVehicles(prixValue,anneeValue,kmValue) {

@@ -26,10 +26,10 @@ class ServicesType extends AbstractType
                 'label' => 'A afficher',
                 'required' => false,
             ])
-            ->add('pathImage',FileType::class,[
-                'label' => 'Modifier image',
-                'mapped' => false,
+            ->add('pathImage', FileType::class,[
+                'label' => false,
                 'required' => false,
+                'mapped' => false
             ])
         ;
     }

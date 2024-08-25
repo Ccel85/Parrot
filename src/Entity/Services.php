@@ -26,7 +26,7 @@ class Services
     public ?bool $isPublished = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
+   
     private ?string $pathImage = null;
 
     public function getId(): ?int
@@ -75,7 +75,7 @@ class Services
         return $this->pathImage;
     }
 
-    public function setPathImage(string $pathImage): static
+    public function setPathImage(?string $pathImage): self
     {
         $this->pathImage = $pathImage;
 

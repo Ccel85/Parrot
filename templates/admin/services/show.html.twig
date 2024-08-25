@@ -13,7 +13,7 @@
           {% for service in services %}
             <div class="col-md-6 mb-3">
               <div class="card ">
-                <img src="{{ asset( service.pathimage) }}" style="max-width: 400px; max-height: 400px;" class="card-img-top m-auto" alt="...">
+                <img src="{{ asset('/upload/' ~ service.pathImage) }}" style="max-width: 400px; max-height: 400px;" class="card-img-top m-auto" alt="...">
                 <div class="card-body ">
                   <small class="text-muted ">Référence: {{ service.id }}</small>
                   <h2 class="card-title "> {{ service.title }}</h2>

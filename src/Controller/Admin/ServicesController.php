@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Images;
 use App\Entity\Services;
 use App\Form\ServicesType;
 use App\Repository\GarageRepository;
@@ -62,10 +63,25 @@ class ServicesController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($services);
-            $manager->flush();
-            
-
+            $imageFile = $form->get('pathImage')->getData();
+        
+            if ($imageFile) {
+                $newFilename = md5(uniqid()).'.'.$imageFile->guessExtension();
+        
+                // Déplace le fichier dans le répertoire de uploads
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+        
+                // Met à jour la propriété 'pathImage' de votre entité avec le nouveau nom de fichier
+                $services->setPathImage($newFilename);
+            }
+        
+                // Persistance de l'entité et sauvegarde
+                $manager->persist($services);
+                $manager->flush();
+        
             return $this->redirectToRoute('app_admin_services_show');
         }
         $horaires = $horairesRepository->findAll();
@@ -78,4 +94,3 @@ class ServicesController extends AbstractController
         ]);
     }
 }
-
