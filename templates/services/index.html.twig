@@ -20,7 +20,7 @@
             <div class="container text-center nosServices">
                 <div class=" row service">
                     <div class="">
-                        <img  alt ='' class="col m-3 imgService" src="{{asset('upload/img_service_mecanique.png')}}" style='max-widht 400px, max-height: 400px'>
+                        <img  alt ='' class="col m-3 imgService" src="{{asset('/upload/' ~ service.pathImage)}}" style='max-widht 400px, max-height: 400px'>
                     </div>
                     <div class=" col text-wrap firstService">
                         <h2>{{service.title}}</h2>
