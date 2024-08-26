@@ -38,7 +38,7 @@
             <div>
               <h2 class="prix pricing-card-title">{{annonce.prix|number_format(0, '.', ' ')}} €</h2>  
             </div>
-            <div class="card-footer d-flex flex-column align-self-end pb-0 mt-auto">
+            <div class="card-footer d-flex flex-column pb-0 mt-auto">
               <a  href="{{ path('app_occasions_edit',{'id': annonce.id}) }}" class="button-occasions" >Modifier</a>
               <a  href="{{ path('app_occasions_delete',{'id': annonce.id}) }}"   class="button-occasions">Supprimer</a>
             <div>Référence de l'annonce : 00{{annonce.id}}</div>

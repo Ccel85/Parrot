@@ -68,7 +68,7 @@ class AnnoncesType extends AbstractType
                     'required' => false
                     ])
             ->add('images', FileType::class,[
-                'label' => false,
+                'label' => 'Ajouter des images',
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false

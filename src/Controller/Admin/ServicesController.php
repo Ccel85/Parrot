@@ -43,6 +43,9 @@ class ServicesController extends AbstractController
             $manager->persist($service);
             $manager->flush();
 
+            // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+        $this->addFlash('success', 'Service ajouté avec succès.');
+
             return $this->redirectToRoute('app_admin_services_show');
         }
         $services = $repository->findAll();
@@ -81,6 +84,8 @@ class ServicesController extends AbstractController
                 // Persistance de l'entité et sauvegarde
                 $manager->persist($services);
                 $manager->flush();
+                // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+        $this->addFlash('success', 'Service modifié avec succès.');
         
             return $this->redirectToRoute('app_admin_services_show');
         }

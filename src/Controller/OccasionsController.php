@@ -87,6 +87,10 @@ class OccasionsController extends AbstractController
             $manager->persist($annonces);
             $manager->flush();
 
+            // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+
+        $this->addFlash('success', 'annonce ajoutée avec succès.');
+
             return $this->redirectToRoute('app_occasions_show');
         }
         $garages = $garagerepository->findAll();
@@ -153,6 +157,9 @@ class OccasionsController extends AbstractController
             $manager->persist($annonces);
             $manager->flush();
 
+            // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+        $this->addFlash('success', 'Annonce modifiée avec succès.');
+
             return $this->redirectToRoute('app_occasions_show');
         }
         $horaires = $horairesRepository->findAll();
@@ -174,6 +181,9 @@ class OccasionsController extends AbstractController
             
             $manager->remove($annonces);
             $manager->flush();
+
+            // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+        $this->addFlash('success', 'Annonce supprimé avec succès.');
 
         return $this->redirectToRoute('app_occasions_show'); // Redirect to the listing page
     }

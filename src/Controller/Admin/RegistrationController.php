@@ -36,6 +36,9 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+        $this->addFlash('success', 'Utilisateur ajouté avec succès.');
+
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_admin_dashboard');
