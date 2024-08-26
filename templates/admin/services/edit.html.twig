@@ -10,8 +10,10 @@
     <img src="{{ asset('/upload/'~ services.pathImage) }}" style="max-width: 400px; max-height: 400px;" alt="...">
     {% endif %}
     {{form_widget(form)}}
-    <button type="submit" class="button">Envoyer</button>
-    <a href="{{ path('app_admin_services_show') }}" class="button-occasions">Retour</a>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="button">Envoyer</button>
+      <a href="{{ path('app_admin_services_show') }}" class="button-occasions">Retour</a>
+    </div>
     {{form_end(form)}}
 </div>
 {% endblock %}

@@ -7,8 +7,10 @@
   <h1 class='text-center'>Créer un service</h1>
     {{form_start(form)}}
       {{form_widget(form)}}
+      <div class="d-flex justify-content-center">
       <button type="submit" class="button">Envoyer</button>
       <a href="{{ path('app_admin_services_show') }}" class="button-occasions">Retour</a>
+      </div>
     {{form_end(form)}}
 </div>
 {% endblock %}

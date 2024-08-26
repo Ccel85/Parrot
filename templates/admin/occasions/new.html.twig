@@ -5,8 +5,10 @@
 <div class='w-50 m-auto'>
   {{ form_start(form) }}
   {{ form_widget(form) }}
+  <div class="d-flex justify-content-center">
     <button type="submit" class="button-occasions">Enregistrer</button>
     <a href="{{ path('app_occasions_show') }}" class="button-occasions">Retour</a>
+  </div>
   {{ form_end(form) }}
 </div>
 {% endblock %}

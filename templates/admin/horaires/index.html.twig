@@ -47,8 +47,10 @@
             </tr>
         </tbody>
         </table>
-        <button type="submit" class="button">Valider la modification</button>
-        <a  href = "{{path('app_admin_garage')}}" class="button-occasions">Retour</a>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="button">Valider la modification</button>
+            <a  href = "{{path('app_admin_garage')}}" class="button-occasions">Retour</a>
+        </div>
     {{ form_end(form) }}
 </div>
 {% endblock %}
