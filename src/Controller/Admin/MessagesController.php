@@ -42,35 +42,70 @@ class MessagesController extends AbstractController
         }
     }
 
-    /* #[Route('/messages/archive', name: 'app_messages_archive', methods: ['POST'])]
+    #[Route('/messages/archive', name: 'app_messages_archive', methods: ['POST'])]
     public function archiveMessages(Request $request, MessagesRepository $messageRepository, EntityManagerInterface $entityManager): Response
 {
     // Récupère les IDs des messages cochés dans le formulaire
-    $archiveIds = $request->request->get('archive', []);
+    $selectedIds = $request->request->all('checkboxArchive', []);
 
     // Parcourt chaque ID à archiver
-    foreach ($archiveIds as $id) {
+    if (!empty($selectedIds)) {
         // Trouve le message correspondant à l'ID dans le repository
-        $message = $messageRepository->find($id);
+        $messages = $messageRepository->findBy(['id' => $selectedIds]);
 
         // Si un message est trouvé, on le marque comme archivé
-        if ($message) {
-            $message->setIsArchived(true);
-            $entityManager->persist($message);
-        }
-    }
-
-    // Applique toutes les modifications à la base de données
-    $entityManager->flush();
+            foreach ($messages as $message) {
+                $message->setIsArchived(true);
+                $entityManager->persist($message);
+            }
+            // Applique toutes les modifications à la base de données
+            $entityManager->flush();
 
     // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
     $this->addFlash('success', 'Messages archivés avec succès.');
+    }
 
-    // Redirige l'utilisateur vers la route 'app_messages' après l'archivage
-    return $this->redirectToRoute('app_messages');
+    //si le bouton delete est selectionner:
+    if ($request->request->has('desarchiver')) {
+
+        $selectedIdsNonarchive = $request->request->all('checkboxDesarchive', []);
+        if (!empty($selectedIdsNonarchive)) {
+        // Trouve le message correspondant à l'ID dans le repository
+        $messages = $messageRepository->findBy(['id' => $selectedIdsNonarchive]);
+
+        foreach ($messages as $message) {
+            $message->setIsArchived(false);
+            $entityManager->persist($message);
+        }
+        $entityManager->flush();
+    // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+        $this->addFlash('success', 'Messages désarchivés avec succès.');
+
+        }
+    }
+    //si le bouton delete est selectionner:
+    if ($request->request->has('delete')) {
+
+        $selectedIdsNonarchive = $request->request->all('checkboxDesarchive', []);
+        if (!empty($selectedIdsNonarchive)) {
+        // Trouve le message correspondant à l'ID dans le repository
+        $messages = $messageRepository->findBy(['id' => $selectedIdsNonarchive]);
+
+        foreach ($messages as $message) {
+            $entityManager->remove($message);
+        }
+        $entityManager->flush();
+    // Ajoute un message flash pour informer l'utilisateur que l'archivage a réussi
+        $this->addFlash('success', 'Messages supprimés avec succès.');
+
+        }
+    }
+        // Redirige l'utilisateur vers la route 'app_messages' après l'archivage
+        return $this->redirectToRoute('app_admin_messages');
+    }
 }
 
-    #[Route('/messages/unarchive', name: 'app_messages_unarchive', methods: ['POST'])]
+   /* #[Route('/messages/unarchive', name: 'app_messages_unarchive', methods: ['POST'])]
     public function unarchiveMessages(Request $request,MessagesRepository $messages, EntityManagerInterface $entityManager): Response
     {
         $unarchiveEmails = $request->request->get('unarchive', []);
@@ -89,4 +124,4 @@ class MessagesController extends AbstractController
 
         return $this->redirectToRoute('app_messages');
     }*/
-}
+

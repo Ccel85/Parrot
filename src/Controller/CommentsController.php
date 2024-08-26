@@ -12,7 +12,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommentsController extends AbstractController
@@ -109,31 +108,31 @@ public function index(CommentsRepository $commentsRepository, HorairesRepository
     
 //Route pour gestion des checkboxs
 #[Route('/comments/manage', name: 'app_comments_manage', methods: ['POST'])]
-public function manage(Request $request, EntityManagerInterface $manager, CommentsRepository $commentsRepository, SessionInterface $session): Response
+public function manage(Request $request, EntityManagerInterface $manager, CommentsRepository $commentsRepository): Response
 {
     $selectedIds = $request->request->all('checkbox', []);
 
     if (!empty($selectedIds)) {
         $comments = $commentsRepository->findBy(['id' => $selectedIds]);
-
+    //si le bouton archive est selectionner:
         if ($request->request->has('archive')) {
             foreach ($comments as $comment) {
                 $comment->setIsArchived(true);
                 $manager->persist($comment);
             }
             $manager->flush();
-            $session->getFlashBag()->add('success', 'Commentaires archivés avec succès !');
+            $this->addFlash('success', 'Commentaires archivés avec succès !');
         }
-
+        //si le bouton delete est selectionner:
         if ($request->request->has('delete')) {
             foreach ($comments as $comment) {
                 $manager->remove($comment);
             }
             $manager->flush();
-            $session->getFlashBag()->add('success', 'Commentaires supprimés avec succès !');
+            $this->addFlash('success', 'Commentaires supprimés avec succès !');
         }
     } else {
-        $session->getFlashBag()->add('error', 'Aucun commentaire sélectionné.');
+        $this->addFlash('error', 'Aucun commentaire sélectionné.');
     }
 
     return $this->redirectToRoute('app_comments');
