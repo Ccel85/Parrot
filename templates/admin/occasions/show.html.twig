@@ -2,14 +2,14 @@
 {% block title %}Nos Occasions{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_occasions_new') }}" class="btn btn-warning m-auto">Nouvelle annonce</a>
+    <a href="{{ path('app_occasions_new') }}" class="button-occasions d-flex justify-content-center">Nouvelle annonce</a>
 {%  if annonces is empty %}
     <p class='text-center'> Il n'y a pas d'annonce actuellement.</p>
     {% else %}
     <div class="cards">
       {% for annonce in annonces %} 
       <!--affichage annonce car-->
-      <div class="container carCard">
+      <div class="container carCard pb-3">
         <div class="card" id="card" >
           <div class="card-body p-0"> 
           {% if annonce.images is empty %}

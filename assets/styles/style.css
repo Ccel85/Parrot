@@ -272,7 +272,7 @@ font-weight: bold;
   margin: 40px;
 }
 
-form button{
+ button{
   background-color: #be1e2d;
   color: white;
   border: none;
@@ -282,7 +282,7 @@ form button{
   margin: 15px;
   border-radius: 1rem
 }
-button:hover {
+button:hover , .button-occasions:hover{
   background-color:#173258;
   transition : 0.7s ;
 }

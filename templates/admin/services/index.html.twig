@@ -14,9 +14,8 @@
             <div class="container text-center nosServices">
                 <div class=" row service">
                     <div class="">
-                    <p>Service trouvé</p>
-                    {{ dump(service) }}
-                    <img  alt ='' class="col m-3 imgService" src="{{ asset('/upload/' ~ service.pathImage) }}" style="max-widht 400px ; max-height: 400px;">
+                        <p>Service trouvé</p>
+                        <img  alt ='' class="col m-3 imgService" src="{{ asset('/upload/' ~ service.pathImage) }}" style="max-widht 400px ; max-height: 400px;">
                     </div>
                     <div class=" col text-wrap firstService">
                         <h2>{{service.title}}</h2>
@@ -24,10 +23,6 @@
                     </div>
                 </div>
             </div>
-            {% else %}
-    <p>Aucun service trouvé</p>
-                </div>
-                </div>
             {% endfor %}
         </div>
     </div>

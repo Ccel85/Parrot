@@ -23,7 +23,7 @@
                       <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault{{ service.id }}" {% if service.isPublished %}checked{% endif %} disabled />
                       <label class="form-check-label ms-2" for="flexSwitchCheckDefault{{ service.id }}">Publier</label>
                     </div>
-                    <a href="{{ path('app_admin_services_edit', {'id': service.id}) }}" class="btn btn-warning">Modifier</a>
+                    <a href="{{ path('app_admin_services_edit', {'id': service.id}) }}" class="button-occasions">Modifier</a>
                   </div>
                 </div>
               </div>
@@ -32,9 +32,7 @@
         </div>
       </div>
     {% endif %}
-    <div class="d-flex align-items-center">
-    <a href="{{ path('app_admin_services_new') }}" class="btn btn-warning m-auto">Nouveau service</a>
-    </div>  
+    <a href="{{ path('app_admin_services_new') }}" class="button-occasions d-flex justify-content-center">Nouveau service</a>
   </div>
 {% endblock %}
 

@@ -39,12 +39,10 @@
                     </tbody>
                 {% endfor %}
             </table>
-            <div class="archiveBouton">
-                <button type = "submit" class="btn btn-warning " name="archive" >Archiver</button>
-            </div>
+                <button type = "submit" class="button " name="archive" >Archiver</button>
         </form>
     </div>
-    <hr>
+    <br>
     <div class="messages archives">
         <h2>Messages lus: </h2>
         <form method = "POST" action="{{ path('app_messages_archive') }}">
@@ -78,12 +76,9 @@
                     </tbody>
             {% endfor %}
             </table>
-                <div class="desarchiverBouton">
-                    <button type = "submit" class="btn btn-warning " name="desarchiver" >Désarchiver</button>
-                </div>
-                <div class="deleteBouton">
-                    <button type = "submit" class="btn btn-warning " name="delete" >Supprimer</button>
-                </div>
+                
+                <button type = "submit" class="button" name="desarchiver" >Désarchiver</button>                
+                <button type = "submit" class="button" name="delete" >Supprimer</button>
         </form>
     </div>
 {% endblock %}
