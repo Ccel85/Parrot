@@ -24,8 +24,10 @@
                     <hr>
                 </article>
             {% endfor %}
-            <button type="submit" name="archive" class="button">Archiver sélectionnés</button>
-            <button type="submit" name="delete" class="button">Supprimer sélectionnés</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" name="archive" class="button">Archiver</button>
+                <button type="submit" name="delete" class="button">Supprimer</button>
+            </div>
         </form>
     </div>
 {% endif %}
@@ -53,8 +55,10 @@
                     <hr>
                 </article>
             {% endfor %}
-            <button type="submit" name="unarchive" class="button">Désarchiver</button>
-            <button type="submit" name="delete" class="button">Supprimer</button>
+            <div class="d-flex justify-content-center">
+                <button type="submit" name="unarchive" class="button">Désarchiver</button>
+                <button type="submit" name="delete" class="button">Supprimer</button>
+            </div>
         </form>
     </div>
     {% endif %}

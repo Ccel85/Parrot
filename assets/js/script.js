@@ -47,8 +47,4 @@
                 getFilteredVehicles(parseInt(document.getElementById("prix").value), parseInt(document.getElementById("annee").value), parseInt(this.value));
             });
         });
-
-/* Cache le message flash après 2.5 secondes
-        setTimeout(function(){
-            document.getElementById('flash-message').style.display = 'none';
-        }, 3000); */
+        

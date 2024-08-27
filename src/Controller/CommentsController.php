@@ -121,7 +121,7 @@ public function manage(Request $request, EntityManagerInterface $manager, Commen
                 $manager->persist($comment);
             }
             $manager->flush();
-            $this->addFlash('success', 'Commentaires archivés avec succès !');
+            $this->addFlash('success', 'Commentaire archivé avec succès !');
         }
         //si le bouton delete est selectionner:
         if ($request->request->has('delete')) {
@@ -129,7 +129,16 @@ public function manage(Request $request, EntityManagerInterface $manager, Commen
                 $manager->remove($comment);
             }
             $manager->flush();
-            $this->addFlash('success', 'Commentaires supprimés avec succès !');
+            $this->addFlash('success', 'Commentaire supprimé avec succès !');
+        }
+         //si le bouton desarchiver est selectionner:
+        if ($request->request->has('unarchive')) {
+            foreach ($comments as $comment) {
+                $comment->setIsArchived(false);
+                $manager->persist($comment);
+            }
+            $manager->flush();
+            $this->addFlash('success', 'Commentaire désarchivé avec succès !');
         }
     } else {
         $this->addFlash('error', 'Aucun commentaire sélectionné.');
