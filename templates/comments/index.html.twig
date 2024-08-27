@@ -78,3 +78,7 @@
     {% endfor %}
 </div>
 {% endblock %}
+{% block importmap %}
+    {# do NOT call parent() #}
+    {{ importmap(['app', 'starRating']) }}
+{% endblock %}

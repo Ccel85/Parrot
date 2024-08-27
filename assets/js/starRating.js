@@ -6,6 +6,7 @@ function afficherEtoiles(nombre) {
   }
   return etoiles;
 }
+
 document.addEventListener("DOMContentLoaded", function() {
   // Sélectionnez tous les éléments ayant la classe "rating"
   var ratings = document.querySelectorAll('.rating');

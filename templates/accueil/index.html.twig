@@ -50,7 +50,8 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/starRating.js') }}"></script>
+{% block importmap %}
+    {# do NOT call parent() #}
+
+    {{ importmap(['app', 'starRating']) }}
 {% endblock %}
